@@ -20,7 +20,6 @@ public class EstudianteServiceImpl implements EstudianteService {
     EstudianteMapper estudianteMapper; //Instancia del mapper Estudiante
 
     //-----------------CRUD-----------------//
-
     //TODO: Implementar DTOS en el CRUD
     @Override
     public Mono<Estudiante> save(Estudiante estudiante) {
@@ -38,21 +37,19 @@ public class EstudianteServiceImpl implements EstudianteService {
 
     @Override
     public Mono<Estudiante> update(String id, Estudiante estudiante) {
-       return null;
-       /* return this.estudianteRepository.findById(id)
+        return this.estudianteRepository.findById(id)
                 .flatMap(clienteUpdate -> {
                     estudiante.setId(id);
                     return save(estudiante);
                 })
-                .switchIfEmpty(Mono.empty());*/
+                .switchIfEmpty(Mono.empty());
     }
 
     @Override
     public Mono<Estudiante> delete(String id) {
-        return null;
-        /*return this.estudianteRepository
+        return this.estudianteRepository
                 .findById(id)
-                .flatMap(estudianteDelete -> this.estudianteRepository.deleteById(estudianteDelete.getId()).thenReturn(estudianteDelete));*/
+                .flatMap(estudianteDelete -> this.estudianteRepository.deleteById(estudianteDelete.getId()).thenReturn(estudianteDelete));
     }
     //-----------------CRUD-----------------//
 }
