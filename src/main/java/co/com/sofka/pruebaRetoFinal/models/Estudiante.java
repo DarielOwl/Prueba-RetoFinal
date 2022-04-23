@@ -17,12 +17,12 @@ public class Estudiante {
     private String id = UUID.randomUUID().toString().substring(0, 10);
 
     //Atributos Estudiante-----------
-    String grupo; //-> Esto seria GrupoID
-    String documentoIdentidad;
-    String nombre;
-    Integer grado;
-    Integer edad;
-    Boolean estado;
+    private String grupo; //-> Esto seria GrupoID
+    private String documentoIdentidad;
+    private String nombre;
+    private Integer grado;
+    private Integer edad;
+    private Boolean estado;
 
     //Constructor de Asignacion--------------
     public Estudiante(String id, String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado) {

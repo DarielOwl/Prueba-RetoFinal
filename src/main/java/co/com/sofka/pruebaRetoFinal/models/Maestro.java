@@ -17,11 +17,11 @@ public class Maestro {
     private String id = UUID.randomUUID().toString().substring(0, 10);
 
     //Atributos Maestro-----------
-    String nombre;
-    String correo;
-    String direccion;
-    String celular;
-    Boolean estado;
+    private String nombre;
+    private String correo;
+    private String direccion;
+    private String celular;
+    private Boolean estado;
 
     //Constructor de Asignacion--------------
     public Maestro(String nombre, String correo, String direccion, String celular, Boolean estado) {
