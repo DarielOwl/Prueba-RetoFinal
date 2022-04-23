@@ -1,0 +1,1 @@
+En la rama "develop" se debera desarrollar todas las HU del proyecto
