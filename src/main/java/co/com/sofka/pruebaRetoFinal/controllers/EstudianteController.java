@@ -26,7 +26,7 @@ public class EstudianteController {
 
     //Mostrar Todos los Estudiantes
     @GetMapping(value = "/allEstudiante")
-    private Flux<EstudianteDTO> findAll() {
+    private Flux<Estudiante> findAll() {
         return this.estudianteService.findAll();
     }
 

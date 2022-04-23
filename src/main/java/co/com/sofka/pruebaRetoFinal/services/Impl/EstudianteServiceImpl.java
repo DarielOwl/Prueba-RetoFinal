@@ -27,12 +27,15 @@ public class EstudianteServiceImpl implements EstudianteService {
     }
 
     @Override
-    public Flux<EstudianteDTO> findAll() {
+    public Flux<Estudiante> findAll() {
+
+        return this.estudianteRepository.findAll();
+
         //Creamos una lista estudiantes sacada de la base de datos
-        Flux <Estudiante> estudiantes = this.estudianteRepository.findAll();
+        //Flux <Estudiante> estudiantes = this.estudianteRepository.findAll();
 
         //Y retornamos estudiantesDTOs para el Frontend
-        return this.estudianteMapper.convertirEstudianteDTOs(estudiantes);
+        //return this.estudianteMapper.convertirEstudianteDTOs(estudiantes);
     }
 
     @Override

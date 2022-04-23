@@ -10,7 +10,7 @@ public interface EstudianteService {
     //-----------------CRUD-----------------//
     Mono<Estudiante> save(Estudiante estudiante);
 
-    Flux<EstudianteDTO> findAll();
+    Flux<Estudiante> findAll();
 
     Mono<Estudiante> update(String id, Estudiante estudiante);
 
