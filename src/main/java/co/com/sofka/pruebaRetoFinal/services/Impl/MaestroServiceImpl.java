@@ -28,7 +28,7 @@ public class MaestroServiceImpl implements MaestroService {
     @Override
     public Mono<Maestro> update(String id, Maestro maestro) {
         return this.maestroRepository.findById(id)
-                .flatMap(clienteUpdate -> {
+                .flatMap(grupoUpdate -> {
                     maestro.setId(id);
                     return save(maestro);
                 })

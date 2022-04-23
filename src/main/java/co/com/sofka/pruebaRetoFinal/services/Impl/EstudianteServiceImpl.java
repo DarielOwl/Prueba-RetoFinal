@@ -41,7 +41,7 @@ public class EstudianteServiceImpl implements EstudianteService {
     @Override
     public Mono<Estudiante> update(String id, Estudiante estudiante) {
         return this.estudianteRepository.findById(id)
-                .flatMap(clienteUpdate -> {
+                .flatMap(estudianteUpdate -> {
                     estudiante.setId(id);
                     return save(estudiante);
                 })
