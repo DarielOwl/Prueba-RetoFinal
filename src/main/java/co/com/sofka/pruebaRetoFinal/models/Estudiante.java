@@ -35,6 +35,16 @@ public class Estudiante {
         this.estado = estado;
     }
 
+    //Cosntructor sin ID----------------
+    public Estudiante(String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado) {
+        this.grupo = grupo;
+        this.documentoIdentidad = documentoIdentidad;
+        this.nombre = nombre;
+        this.grado = grado;
+        this.edad = edad;
+        this.estado = estado;
+    }
+
     //Otros Metodos-------------------------
     @Override
     public boolean equals(Object o) {

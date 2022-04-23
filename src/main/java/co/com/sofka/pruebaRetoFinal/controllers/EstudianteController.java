@@ -1,5 +1,6 @@
 package co.com.sofka.pruebaRetoFinal.controllers;
 
+import co.com.sofka.pruebaRetoFinal.DTOs.EstudianteDTO;
 import co.com.sofka.pruebaRetoFinal.models.Estudiante;
 import co.com.sofka.pruebaRetoFinal.services.Impl.EstudianteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class EstudianteController {
 
     //Mostrar Todos los Estudiantes
     @GetMapping(value = "/allEstudiante")
-    private Flux<Estudiante> findAll() {
+    private Flux<EstudianteDTO> findAll() {
         return this.estudianteService.findAll();
     }
 

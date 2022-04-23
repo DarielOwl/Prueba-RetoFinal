@@ -3,6 +3,9 @@ package co.com.sofka.pruebaRetoFinal.DTOs;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import reactor.core.CoreSubscriber;
+import reactor.core.publisher.Mono;
+
 import java.util.Objects;
 
 @Getter @Setter @NoArgsConstructor //-> Nos ahorra en escribir codigo repetitivo
