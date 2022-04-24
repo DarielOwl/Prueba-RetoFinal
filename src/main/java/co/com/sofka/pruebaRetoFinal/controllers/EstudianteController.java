@@ -1,6 +1,7 @@
 package co.com.sofka.pruebaRetoFinal.controllers;
 
 import co.com.sofka.pruebaRetoFinal.DTOs.EstudianteDTO;
+import co.com.sofka.pruebaRetoFinal.mappers.EstudianteMapper;
 import co.com.sofka.pruebaRetoFinal.models.Estudiante;
 import co.com.sofka.pruebaRetoFinal.services.Impl.EstudianteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,14 @@ public class EstudianteController {
 
     @Autowired
     EstudianteServiceImpl estudianteService;
+    EstudianteMapper estudianteMapper = new EstudianteMapper();
 
     //-----------------CRUD-----------------//
     //Guardar un Estudiante
     @PostMapping("/addEstudiante")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<Estudiante> save(@RequestBody Estudiante estudiante) {
-        return this.estudianteService.save(estudiante);
+    private Mono<EstudianteDTO> save(@RequestBody EstudianteDTO estudianteDTO) {
+        return this.estudianteService.save(estudianteMapper.createEstudiante(estudianteDTO)).thenReturn(estudianteDTO);
     }
 
     //Mostrar Todos los Estudiantes
