@@ -4,6 +4,7 @@ import co.com.sofka.pruebaRetoFinal.models.Estudiante;
 import co.com.sofka.pruebaRetoFinal.repositories.EstudianteRepository;
 import co.com.sofka.pruebaRetoFinal.services.EstudianteService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -39,12 +40,14 @@ class EstudianteServiceImplTest {
     }
 
     @Test
+    @DisplayName("findAll Estudiantes")
     void findAll() {
         when(estudianteService.findAll()).thenReturn(estudianteFlux);
         assertNotNull(estudianteService.findAll());
     }
 
     @Test
+    @DisplayName("Crear nuevo Estudiante")
     void save() {
         Mono<Estudiante> estudianteMono = Mono.just(new Estudiante(
                 "6-A",

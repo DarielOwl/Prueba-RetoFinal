@@ -28,8 +28,8 @@ public class EstudianteController {
 
     //Mostrar Todos los Estudiantes
     @GetMapping(value = "/allEstudiante")
-    private Flux<Estudiante> findAll() {
-        return this.estudianteService.findAll();
+    private Flux<EstudianteDTO> findAll() {
+        return estudianteMapper.convertirEstudianteDTOs(this.estudianteService.findAll());
     }
 
     //Actualizar Estudiante
