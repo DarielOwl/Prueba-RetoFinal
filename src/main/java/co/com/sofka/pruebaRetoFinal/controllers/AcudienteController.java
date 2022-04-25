@@ -44,6 +44,10 @@ public class AcudienteController {
                 .flatMap(acudiente1 -> Mono.just((acudiente1)).switchIfEmpty(Mono.empty()));
 
     }
+    @GetMapping(value = "/searchAcudiente/{documentoIdentidad}")
+    public Mono<Acudiente> buscarMaestroPorDocumentoIdentidad(@PathVariable("documentoIdentidad") String documentoIdentidad){
+        return this.acudienteService.findByDocumentoIdentidad(documentoIdentidad);
+    }
     //-----------------CRUD-----------------//
 
 }

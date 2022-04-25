@@ -14,6 +14,8 @@ public interface AcudienteService {
     Mono<Acudiente> update(String id, Acudiente acudiente);
 
     Mono<Acudiente> delete(String id);
+
+    Mono<Acudiente> findByDocumentoIdentidad(String documentoIdentidad);
     //-----------------CRUD-----------------//
 
 }

@@ -43,6 +43,11 @@ public class AcudienteServiceImpl implements AcudienteService {
                         .deleteById(acudienteDelete.getId())
                         .thenReturn(acudienteDelete));
     }
+
+    @Override
+    public Mono<Acudiente> findByDocumentoIdentidad(String documentoIdentidad) {
+        return this.acudienteRepository.findByDocumentoIdentidad(documentoIdentidad);
+    }
     //-----------------CRUD-----------------//
 
 }

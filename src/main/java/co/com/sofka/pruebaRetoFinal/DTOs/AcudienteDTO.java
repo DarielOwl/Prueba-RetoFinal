@@ -16,6 +16,7 @@ public class AcudienteDTO {
     private String celular;
     private String direccion;
     private List<Estudiante> estudiantes; // -> el Acudiente puede tener varios hijos
+    private String correo;
 
     //Constructor de Asignacion--------------
     public AcudienteDTO(String nombre, String documentoIdentidad, String celular, String direccion, List<Estudiante> estudiantes) {
@@ -24,6 +25,15 @@ public class AcudienteDTO {
         this.celular = celular;
         this.direccion = direccion;
         this.estudiantes = estudiantes;
+    }
+
+    public AcudienteDTO(String nombre, String documentoIdentidad, String celular, String direccion, List<Estudiante> estudiantes, String correo) {
+        this.nombre = nombre;
+        this.documentoIdentidad = documentoIdentidad;
+        this.celular = celular;
+        this.direccion = direccion;
+        this.estudiantes = estudiantes;
+        this.correo = correo;
     }
 
     //Otros Metodos-------------------------
@@ -48,7 +58,7 @@ public class AcudienteDTO {
                 ", celular='" + celular + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", estudiantes=" + estudiantes +
+                ", correo='" + correo + '\'' +
                 '}';
     }
-
 }

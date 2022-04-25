@@ -23,6 +23,7 @@ public class Acudiente {
     private String celular;
     private String direccion;
     private List<Estudiante> estudiantes; // -> el Acudiente puede tener varios hijos
+    private String correo;
 
     //Constructor de Asignacion--------------
     public Acudiente(String nombre, String documentoIdentidad, String celular, String direccion, List<Estudiante> estudiantes) {
@@ -31,6 +32,15 @@ public class Acudiente {
         this.celular = celular;
         this.direccion = direccion;
         this.estudiantes = estudiantes;
+    }
+
+    public Acudiente(String nombre, String documentoIdentidad, String celular, String direccion, List<Estudiante> estudiantes, String correo) {
+        this.nombre = nombre;
+        this.documentoIdentidad = documentoIdentidad;
+        this.celular = celular;
+        this.direccion = direccion;
+        this.estudiantes = estudiantes;
+        this.correo = correo;
     }
 
     //Otros Metodos-------------------------
@@ -56,7 +66,7 @@ public class Acudiente {
                 ", celular='" + celular + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", estudiantes=" + estudiantes +
+                ", correo='" + correo + '\'' +
                 '}';
     }
-
 }
