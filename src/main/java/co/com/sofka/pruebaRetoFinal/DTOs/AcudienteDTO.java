@@ -19,21 +19,18 @@ public class AcudienteDTO {
     private String correo;
 
     //Constructor de Asignacion--------------
-    public AcudienteDTO(String nombre, String documentoIdentidad, String celular, String direccion, List<Estudiante> estudiantes) {
-        this.nombre = nombre;
-        this.documentoIdentidad = documentoIdentidad;
-        this.celular = celular;
-        this.direccion = direccion;
-        this.estudiantes = estudiantes;
-    }
-
     public AcudienteDTO(String nombre, String documentoIdentidad, String celular, String direccion, List<Estudiante> estudiantes, String correo) {
-        this.nombre = nombre;
-        this.documentoIdentidad = documentoIdentidad;
-        this.celular = celular;
+        this.nombre = Objects.requireNonNull(nombre);
+        this.documentoIdentidad = Objects.requireNonNull(documentoIdentidad);
+        this.celular = Objects.requireNonNull(celular);
         this.direccion = direccion;
         this.estudiantes = estudiantes;
-        this.correo = correo;
+        this.correo = Objects.requireNonNull(correo);
+
+        if(nombre.length()>255){
+            throw new IllegalArgumentException("Un nombre no puede contener mas de 255 carácteres.");
+        }
+
     }
 
     //Otros Metodos-------------------------

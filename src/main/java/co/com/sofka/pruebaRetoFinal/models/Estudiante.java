@@ -23,6 +23,7 @@ public class Estudiante {
     private Integer grado;
     private Integer edad;
     private Boolean estado;
+    private String documentoIdentidadAcudiente;
 
     //Constructor de Asignacion--------------
     public Estudiante(String id, String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado) {
@@ -33,6 +34,16 @@ public class Estudiante {
         this.grado = grado;
         this.edad = edad;
         this.estado = estado;
+    }
+
+    public Estudiante(String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado, String documentoIdentidadAcudiente) {
+        this.grupo = "";
+        this.documentoIdentidad = documentoIdentidad;
+        this.nombre = nombre;
+        this.grado = grado;
+        this.edad = edad;
+        this.estado = estado;
+        this.documentoIdentidadAcudiente = documentoIdentidadAcudiente;
     }
 
     //Cosntructor sin ID----------------
@@ -69,7 +80,7 @@ public class Estudiante {
                 ", grado=" + grado +
                 ", edad=" + edad +
                 ", estado=" + estado +
+                ", documentoIdentidadAcudiente='" + documentoIdentidadAcudiente + '\'' +
                 '}';
     }
-
 }

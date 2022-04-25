@@ -12,12 +12,13 @@ import java.util.Objects;
 public class EstudianteDTO {
 
     //Atributos Estudiante-----------
-    String grupo; //-> Esto seria GrupoID
-    String documentoIdentidad;
-    String nombre;
-    Integer grado;
-    Integer edad;
-    Boolean estado;
+    private String grupo; //-> Esto seria GrupoID
+    private String documentoIdentidad;
+    private String nombre;
+    private Integer grado;
+    private Integer edad;
+    private Boolean estado;
+    private String documentoIdentidadAcudiente;
 
     //Constructor de Asignacion--------------
     public EstudianteDTO(String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado) {
@@ -27,6 +28,16 @@ public class EstudianteDTO {
         this.grado = grado;
         this.edad = edad;
         this.estado = estado;
+    }
+
+    public EstudianteDTO(String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado, String documentoIdentidadAcudiente) {
+        this.grupo = grupo;
+        this.documentoIdentidad = documentoIdentidad;
+        this.nombre = nombre;
+        this.grado = grado;
+        this.edad = edad;
+        this.estado = estado;
+        this.documentoIdentidadAcudiente = documentoIdentidadAcudiente;
     }
 
     //Otros Metodos-------------------------
@@ -53,7 +64,7 @@ public class EstudianteDTO {
                 ", grado=" + grado +
                 ", edad=" + edad +
                 ", estado=" + estado +
+                ", documentoIdentidadAcudiente='" + documentoIdentidadAcudiente + '\'' +
                 '}';
     }
-
 }

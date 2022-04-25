@@ -21,7 +21,8 @@ public class EstudianteMapper {
                 estudiante.getNombre(),
                 estudiante.getGrado(),
                 estudiante.getEdad(),
-                estudiante.getEstado()
+                estudiante.getEstado(),
+                estudiante.getDocumentoIdentidadAcudiente()
         );
 
         /*TODO: tener en cuenta alguna verificacion a futuro para crear el DTO*/
