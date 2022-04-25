@@ -5,8 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,11 +17,11 @@ public class Nota {
 
     //Atributos Nota-----------
     private String nombreMateria;
-    private LocalDate fecha;
+    private String fecha;
     private Double puntaje;
 
     //Constructor de Asignacion--------------
-    public Nota(String nombreMateria, LocalDate fecha, Double puntaje) {
+    public Nota(String nombreMateria, String fecha, Double puntaje) {
         this.nombreMateria = nombreMateria;
         this.fecha = fecha;
         this.puntaje = puntaje;

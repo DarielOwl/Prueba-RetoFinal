@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 @Getter @Setter @NoArgsConstructor //-> Nos ahorra en escribir codigo repetitivo
@@ -11,11 +12,11 @@ public class NotaDTO {
 
     //Atributos Nota-----------
     private String nombreMateria;
-    private LocalDate fecha;
+    private String fecha;
     private Double puntaje;
 
     //Constructor de Asignacion--------------
-    public NotaDTO(String nombreMateria, LocalDate fecha, Double puntaje) {
+    public NotaDTO(String nombreMateria, String fecha, Double puntaje) {
         this.nombreMateria = nombreMateria;
         this.fecha = fecha;
         this.puntaje = puntaje;
