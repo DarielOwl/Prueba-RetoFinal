@@ -20,14 +20,6 @@ public class MaestroController {
     MaestroServiceImpl maestroService;
     MaestroMapper maestroMapper = new MaestroMapper();
 
-    /*
-    *     //Guardar un Estudiante
-    @PostMapping("/addEstudiante")
-    @ResponseStatus(HttpStatus.CREATED)
-    private Mono<EstudianteDTO> save(@RequestBody EstudianteDTO estudianteDTO) {
-        return this.estudianteService.save(estudianteMapper.createEstudiante(estudianteDTO)).thenReturn(estudianteDTO);
-    }
-    * */
     //-----------------CRUD-----------------//
     //Guardar un Maestro
     @PostMapping("/addMaestro")
