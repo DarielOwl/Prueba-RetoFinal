@@ -63,6 +63,8 @@ public class MaestroMapper {
                     maestroDTO1.getCorreo(),
                     maestroDTO1.getDireccion(),
                     maestroDTO1.getCelular(),
+                    maestroDTO1.getEspecialidad(),
+                    maestroDTO1.getMaterias(),
                     maestroDTO1.getEstado()
             );
             return maestro;
@@ -80,6 +82,8 @@ public class MaestroMapper {
                     maestro1.getCorreo(),
                     maestro1.getDireccion(),
                     maestro1.getCelular(),
+                    maestro1.getEspecialidad(),
+                    maestro1.getMaterias(),
                     maestro1.getEstado()
             );
             return maestroDTO;

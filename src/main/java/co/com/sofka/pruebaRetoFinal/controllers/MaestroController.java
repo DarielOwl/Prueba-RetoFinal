@@ -1,5 +1,6 @@
 package co.com.sofka.pruebaRetoFinal.controllers;
 
+import co.com.sofka.pruebaRetoFinal.DTOs.EstudianteDTO;
 import co.com.sofka.pruebaRetoFinal.DTOs.MaestroDTO;
 import co.com.sofka.pruebaRetoFinal.mappers.EstudianteMapper;
 import co.com.sofka.pruebaRetoFinal.mappers.MaestroMapper;
@@ -19,18 +20,26 @@ public class MaestroController {
     MaestroServiceImpl maestroService;
     MaestroMapper maestroMapper = new MaestroMapper();
 
+    /*
+    *     //Guardar un Estudiante
+    @PostMapping("/addEstudiante")
+    @ResponseStatus(HttpStatus.CREATED)
+    private Mono<EstudianteDTO> save(@RequestBody EstudianteDTO estudianteDTO) {
+        return this.estudianteService.save(estudianteMapper.createEstudiante(estudianteDTO)).thenReturn(estudianteDTO);
+    }
+    * */
     //-----------------CRUD-----------------//
     //Guardar un Maestro
     @PostMapping("/addMaestro")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<Maestro> save(@RequestBody Maestro maestro) {
-        return this.maestroService.save(maestro);
+    private Mono<MaestroDTO> save(@RequestBody MaestroDTO maestroDTO) {
+        return this.maestroService.save(maestroMapper.createMaestro(maestroDTO)).thenReturn(maestroDTO);
     }
 
     //Mostrar Todos los Maestros
     @GetMapping(value = "/allMaestro")
-    private Flux<Maestro> findAll() {
-        return this.maestroService.findAll();
+    private Flux<MaestroDTO> findAll() {
+        return maestroMapper.convertirMaestroDTOs(this.maestroService.findAll());
     }
 
     //Actualizar Maestro
