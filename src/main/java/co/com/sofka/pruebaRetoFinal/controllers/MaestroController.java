@@ -1,5 +1,6 @@
 package co.com.sofka.pruebaRetoFinal.controllers;
 
+import co.com.sofka.pruebaRetoFinal.DTOs.MaestroDTO;
 import co.com.sofka.pruebaRetoFinal.models.Maestro;
 import co.com.sofka.pruebaRetoFinal.services.Impl.MaestroServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,12 @@ public class MaestroController {
 
     }
     //-----------------CRUD-----------------//
+
+
+    //Listar Maestro por Documento de Identidad----------------------
+    /*@GetMapping(value = "/searchMaestro/{id}")
+    public Mono<Maestro> buscarDocumentoIdentidadMaestro(@PathVariable("id") String id){
+        return maestroService.buscarDocumentoIdentidadMaestro(id).thenReturn(MaestroDTO);
+    }*/
 
 }

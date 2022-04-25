@@ -16,4 +16,5 @@ public interface MaestroService {
     Mono<Maestro> delete(String id);
     //-----------------CRUD-----------------//
 
+    //Mono<Maestro> buscarDocumentoIdentidadMaestro(String id);
 }

@@ -45,4 +45,14 @@ public class MaestroServiceImpl implements MaestroService {
     }
     //-----------------CRUD-----------------//
 
+        /*@Override
+    public Mono<Maestro> buscarDocumentoIdentidadMaestro(String id) {
+
+        //Busca el Maestro por su Documento de Identidad, si no existe salta una excepcion
+        Maestro maestro = maestroRepository.findById(id);
+
+        //Retornamos un grupo_Dto ya cargado con datos
+        return maestro;
+    }*/
+
 }
