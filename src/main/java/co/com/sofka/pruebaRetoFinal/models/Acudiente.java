@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -41,6 +42,15 @@ public class Acudiente {
         this.direccion = direccion;
         this.estudiantes = estudiantes;
         this.correo = correo;
+    }
+
+    public Acudiente(String nombre, String documentoIdentidad, String celular, String direccion, String correo) {
+        this.nombre = nombre;
+        this.documentoIdentidad = documentoIdentidad;
+        this.celular = celular;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.estudiantes = new ArrayList<>();
     }
 
     //Otros Metodos-------------------------
