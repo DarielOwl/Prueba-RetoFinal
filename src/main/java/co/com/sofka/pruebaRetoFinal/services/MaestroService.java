@@ -1,5 +1,6 @@
 package co.com.sofka.pruebaRetoFinal.services;
 
+import co.com.sofka.pruebaRetoFinal.DTOs.MaestroDTO;
 import co.com.sofka.pruebaRetoFinal.models.Maestro;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -16,5 +17,8 @@ public interface MaestroService {
     Mono<Maestro> delete(String id);
     //-----------------CRUD-----------------//
 
-    //Mono<Maestro> buscarDocumentoIdentidadMaestro(String id);
+    //Listar Maestro por Documento de Identidad----------------------
+    Mono<MaestroDTO> buscarMaestroPorDocumentoIdentidad(String documentoIdentidad);
+
+    Mono<Maestro> findByDocumentoIdentidad(String documentoIdentidad);
 }

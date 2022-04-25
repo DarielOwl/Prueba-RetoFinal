@@ -1,5 +1,7 @@
 package co.com.sofka.pruebaRetoFinal.services.Impl;
 
+import co.com.sofka.pruebaRetoFinal.DTOs.MaestroDTO;
+import co.com.sofka.pruebaRetoFinal.mappers.MaestroMapper;
 import co.com.sofka.pruebaRetoFinal.models.Maestro;
 import co.com.sofka.pruebaRetoFinal.repositories.MaestroRepository;
 import co.com.sofka.pruebaRetoFinal.services.MaestroService;
@@ -13,6 +15,9 @@ public class MaestroServiceImpl implements MaestroService {
 
     @Autowired
     MaestroRepository maestroRepository; //Instancia del repositorio Estudiante
+
+    @Autowired
+    MaestroMapper maestroMapper; //Instancia del repositorio Estudiante
 
     //-----------------CRUD-----------------//
     @Override
@@ -45,14 +50,21 @@ public class MaestroServiceImpl implements MaestroService {
     }
     //-----------------CRUD-----------------//
 
-        /*@Override
-    public Mono<Maestro> buscarDocumentoIdentidadMaestro(String id) {
+    //Listar Maestro por Documento de Identidad----------------------
+    @Override
+    public Mono<MaestroDTO> buscarMaestroPorDocumentoIdentidad(String documentoIdentidad) {
 
-        //Busca el Maestro por su Documento de Identidad, si no existe salta una excepcion
-        Maestro maestro = maestroRepository.findById(id);
+        //Busca el grupo por su ID, si no existe devuelve vacio
+        Mono<Maestro> maestro = maestroRepository.findByDocumentoIdentidad(documentoIdentidad).switchIfEmpty(Mono.empty());
 
-        //Retornamos un grupo_Dto ya cargado con datos
-        return maestro;
-    }*/
+        //Lo convierte a Mono<Maestro> y lo manda
+        return maestroMapper.createMaestroDTOMono(maestro);
+    }
+
+    //Buscar Documento de Identidad----------------------
+    @Override
+    public Mono<Maestro> findByDocumentoIdentidad(String documentoIdentidad) {
+        return this.maestroRepository.findByDocumentoIdentidad(documentoIdentidad);
+    }
 
 }
