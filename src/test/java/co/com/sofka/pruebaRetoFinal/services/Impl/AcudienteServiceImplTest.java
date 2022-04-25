@@ -56,25 +56,4 @@ class AcudienteServiceImplTest {
         assertNotNull(acudienteService.save(new Acudiente()));
     }
 
-    @Test
-    public void getAcudienteByDocumentoIdentidadTest(){
-        Mono<Acudiente> acudienteMono=Mono.just(new Acudiente(
-                "Andrea Pereira",
-                "777777777",
-                "09999998",
-                "Barrio Pirata2",
-                "test@gmail.com"));
-        when(acudienteService.findByDocumentoIdentidad("777777777")).thenReturn(acudienteMono);
-
-        Flux<Acudiente> responseBody = webTestClient.get().uri("/searchAcudiente/777777777")
-                .exchange()
-                .expectStatus().isOk()
-                .returnResult(Acudiente.class)
-                .getResponseBody();
-
-        StepVerifier.create(responseBody)
-                .expectSubscription()
-                .expectNextMatches(a->a.getNombre().equals("nombreAcudiente"))
-                .verifyComplete();
-    }
 }
