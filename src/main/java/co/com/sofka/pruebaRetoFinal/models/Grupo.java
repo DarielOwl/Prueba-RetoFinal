@@ -24,6 +24,7 @@ public class Grupo {
     private Integer maximoCupos;
     private List<Estudiante> estudiantes;
     private List<Nota> notas;
+
     private String curso;
     private String nombre;
     private boolean estado;
