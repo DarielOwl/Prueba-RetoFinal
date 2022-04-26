@@ -21,6 +21,8 @@ public class MaestroMapper {
                 maestro.getCorreo(),
                 maestro.getDireccion(),
                 maestro.getCelular(),
+                maestro.getEspecialidad(),
+                maestro.getMaterias(),
                 maestro.getEstado()
         );
 
@@ -39,6 +41,8 @@ public class MaestroMapper {
                 maestroDTO.getCorreo(),
                 maestroDTO.getDireccion(),
                 maestroDTO.getCelular(),
+                maestroDTO.getEspecialidad(),
+                maestroDTO.getMaterias(),
                 maestroDTO.getEstado()
         );
 
