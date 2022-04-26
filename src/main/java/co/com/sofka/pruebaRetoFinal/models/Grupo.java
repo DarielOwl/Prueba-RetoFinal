@@ -26,6 +26,7 @@ public class Grupo {
     private List<Nota> notas;
     private String curso;
     private String nombre;
+    private boolean estado;
 
     //Constructor de Asignacion--------------
 
@@ -39,12 +40,14 @@ public class Grupo {
         this.notas = notas;
         this.curso = curso;
         this.nombre = nombre;
+        this.estado=true;
     }
 
     public Grupo(Integer grado, String curso, String nombre) {
         this.grado = grado;
         this.curso = curso;
         this.nombre = nombre;
+        this.estado = true;
     }
 
     //Otros Metodos-------------------------

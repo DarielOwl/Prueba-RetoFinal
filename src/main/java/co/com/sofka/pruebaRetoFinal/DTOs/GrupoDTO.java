@@ -21,6 +21,7 @@ public class GrupoDTO {
     private List<Nota> notas;
     private String curso;
     private String nombre;
+    private boolean estado;
 
     //Constructor de Asignacion--------------
     public GrupoDTO(String maestro, String horarios, Integer grado, Integer maximoCupos, List<Estudiante> estudiantes, List<Nota> notas, String curso) {
@@ -31,13 +32,15 @@ public class GrupoDTO {
         this.estudiantes = estudiantes;
         this.notas = notas;
         this.curso = curso;
-        this.curso = nombre;
+        this.nombre = nombre;
+        this.estado = true;
     }
 
     public GrupoDTO(Integer grado, String curso, String nombre) {
         this.grado = grado;
         this.curso = curso;
         this.nombre = nombre;
+        this.estado=true;
     }
 
     //Otros Metodos-------------------------
