@@ -55,7 +55,8 @@ public class MaestroServiceImpl implements MaestroService {
     public Mono<MaestroDTO> buscarMaestroPorDocumentoIdentidad(String documentoIdentidad) {
 
         //Busca el grupo por su ID, si no existe devuelve vacio
-        Mono<Maestro> maestro = maestroRepository.findByDocumentoIdentidad(documentoIdentidad).switchIfEmpty(Mono.empty());
+        Mono<Maestro> maestro = maestroRepository.findByDocumentoIdentidad(documentoIdentidad)
+                .switchIfEmpty(Mono.empty());
 
         //Lo convierte a Mono<Maestro> y lo manda
         return maestroMapper.createMaestroDTOMono(maestro);
