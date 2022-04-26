@@ -47,7 +47,7 @@ public class AcudienteController {
     //Buscar Acudiente por DocumentoIdentidad
     @GetMapping(value = "/searchAcudiente/{documentoIdentidad}")
     public Mono<Acudiente> buscarMaestroPorDocumentoIdentidad(@PathVariable("documentoIdentidad") String documentoIdentidad){
-        return this.acudienteService.findByDocumentoIdentidad(documentoIdentidad);
+        return this.acudienteService.findByDocumentoIdentidad(documentoIdentidad).switchIfEmpty(Mono.just(new Acudiente()));
     }
     //-----------------CRUD-----------------//
 
