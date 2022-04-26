@@ -46,6 +46,11 @@ public class EstudianteController {
                 .flatMap(estudiante1 -> Mono.just((estudiante1)).switchIfEmpty(Mono.empty()));
 
     }
+    @GetMapping("/allEstudiantesSinGrupo")
+    private Flux<Estudiante> findAllEstudiantesSinGrupo(){
+        return this.estudianteService.findAll().filter(e -> e.getGrupo().isEmpty() || e.getGrupo().length()==0);
+    }
+
     //-----------------CRUD-----------------//
 
 

@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Grupo {
 
     @Id
-    private String id = UUID.randomUUID().toString().substring(0, 10);
+    private String id = UUID.randomUUID().toString().substring(0, 5);
 
     //Atributos Grupo-----------
     private String maestro; //-> Esto seria maestroID
@@ -25,14 +25,30 @@ public class Grupo {
     private List<Estudiante> estudiantes;
     private List<Nota> notas;
 
+    private String curso;
+    private String nombre;
+    private boolean estado;
+
     //Constructor de Asignacion--------------
-    public Grupo(String maestro, String horarios, Integer grado, Integer maximoCupos, List<Estudiante> estudiantes, List<Nota> notas) {
+
+
+    public Grupo(String maestro, String horarios, Integer grado, Integer maximoCupos, List<Estudiante> estudiantes, List<Nota> notas, String curso, String nombre) {
         this.maestro = maestro;
         this.horarios = horarios;
         this.grado = grado;
         this.maximoCupos = maximoCupos;
         this.estudiantes = estudiantes;
         this.notas = notas;
+        this.curso = curso;
+        this.nombre = nombre;
+        this.estado=true;
+    }
+
+    public Grupo(Integer grado, String curso, String nombre) {
+        this.grado = grado;
+        this.curso = curso;
+        this.nombre = nombre;
+        this.estado = true;
     }
 
     //Otros Metodos-------------------------
