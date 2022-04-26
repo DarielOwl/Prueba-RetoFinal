@@ -14,5 +14,7 @@ public interface GrupoService {
     Mono<Grupo> update(String id, Grupo grupo);
 
     Mono<Grupo> delete(String id);
+
+    Mono<Grupo> findById(String id);
     //-----------------CRUD-----------------//
 }
