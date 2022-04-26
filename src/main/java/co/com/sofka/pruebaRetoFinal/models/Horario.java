@@ -15,13 +15,13 @@ public class Horario {
     //Atributos Horarios------------
     private String horarioInicial;
     private String horarioFinal;
-    private List<String> dias;
+    private String dia;
 
     //Constructor de Asignacion--------------
-    public Horario(String horarioInicial, String horarioFinal, List<String> dias) {
+    public Horario(String horarioInicial, String horarioFinal, String dia) {
         this.horarioInicial = horarioInicial;
         this.horarioFinal = horarioFinal;
-        this.dias = dias;
+        this.dia = dia;
     }
 
     //Otros Metodos-------------------------
@@ -30,12 +30,12 @@ public class Horario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Horario horario = (Horario) o;
-        return Objects.equals(horarioInicial, horario.horarioInicial) && Objects.equals(horarioFinal, horario.horarioFinal) && Objects.equals(dias, horario.dias);
+        return Objects.equals(horarioInicial, horario.horarioInicial) && Objects.equals(horarioFinal, horario.horarioFinal) && Objects.equals(dia, horario.dia);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(horarioInicial, horarioFinal, dias);
+        return Objects.hash(horarioInicial, horarioFinal, dia);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Horario {
         return "Horario{" +
                 "horarioInicial='" + horarioInicial + '\'' +
                 ", horarioFinal='" + horarioFinal + '\'' +
-                ", dias=" + dias +
+                ", dia='" + dia + '\'' +
                 '}';
     }
 
