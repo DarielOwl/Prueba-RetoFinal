@@ -1,6 +1,9 @@
 package co.com.sofka.pruebaRetoFinal.controllers;
 
+import co.com.sofka.pruebaRetoFinal.DTOs.EstudianteDTO;
 import co.com.sofka.pruebaRetoFinal.DTOs.MaestroDTO;
+import co.com.sofka.pruebaRetoFinal.mappers.EstudianteMapper;
+import co.com.sofka.pruebaRetoFinal.mappers.MaestroMapper;
 import co.com.sofka.pruebaRetoFinal.models.Maestro;
 import co.com.sofka.pruebaRetoFinal.services.Impl.MaestroServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +18,20 @@ public class MaestroController {
 
     @Autowired
     MaestroServiceImpl maestroService;
+    MaestroMapper maestroMapper = new MaestroMapper();
 
     //-----------------CRUD-----------------//
     //Guardar un Maestro
     @PostMapping("/addMaestro")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<Maestro> save(@RequestBody Maestro maestro) {
-        return this.maestroService.save(maestro);
+    private Mono<MaestroDTO> save(@RequestBody MaestroDTO maestroDTO) {
+        return this.maestroService.save(maestroMapper.createMaestro(maestroDTO)).thenReturn(maestroDTO);
     }
 
     //Mostrar Todos los Maestros
     @GetMapping(value = "/allMaestro")
-    private Flux<Maestro> findAll() {
-        return this.maestroService.findAll();
+    private Flux<MaestroDTO> findAll() {
+        return maestroMapper.convertirMaestroDTOs(this.maestroService.findAll());
     }
 
     //Actualizar Maestro
@@ -46,11 +50,10 @@ public class MaestroController {
     }
     //-----------------CRUD-----------------//
 
-
     //Listar Maestro por Documento de Identidad----------------------
-    /*@GetMapping(value = "/searchMaestro/{id}")
-    public Mono<Maestro> buscarDocumentoIdentidadMaestro(@PathVariable("id") String id){
-        return maestroService.buscarDocumentoIdentidadMaestro(id).thenReturn(MaestroDTO);
-    }*/
+    @GetMapping(value = "/searchMaestro/{documentoIdentidad}")
+    public Mono<MaestroDTO> buscarMaestroPorDocumentoIdentidad(@PathVariable("documentoIdentidad") String documentoIdentidad){
+        return this.maestroService.buscarMaestroPorDocumentoIdentidad(documentoIdentidad);
+    }
 
 }
