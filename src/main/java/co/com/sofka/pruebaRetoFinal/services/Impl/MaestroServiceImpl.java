@@ -54,7 +54,7 @@ public class MaestroServiceImpl implements MaestroService {
     @Override
     public Mono<MaestroDTO> buscarMaestroPorDocumentoIdentidad(String documentoIdentidad) {
 
-        //Busca el grupo por su ID, si no existe devuelve vacio
+        //Busca el maestro por su Documento de Identidad, sino retorna vacio el obj
         Mono<Maestro> maestro = maestroRepository.findByDocumentoIdentidad(documentoIdentidad).switchIfEmpty(Mono.empty());
 
         //Lo convierte a Mono<Maestro> y lo manda
@@ -65,6 +65,23 @@ public class MaestroServiceImpl implements MaestroService {
     @Override
     public Mono<Maestro> findByDocumentoIdentidad(String documentoIdentidad) {
         return this.maestroRepository.findByDocumentoIdentidad(documentoIdentidad);
+    }
+
+    //Buscar Maestro por Materia en Especifico----------------------
+    @Override
+    public Flux<Maestro> findByMaterias(String materia) {
+        return this.maestroRepository.findByMaterias(materia);
+    }
+
+    //Listar Maestro por Materia----------------------
+    @Override
+    public Flux<MaestroDTO> buscarMaestroPorMateria(String materia) {
+
+        //Busca el maestro por su Materia, sino retorna vacio el obj
+        Flux<Maestro> maestro = maestroRepository.findByMaterias(materia).switchIfEmpty(Mono.empty());
+
+        //Lo convierte a Mono<Maestro> y lo manda
+        return maestroMapper.convertirMaestroDTOs(maestro);
     }
 
 }

@@ -20,5 +20,12 @@ public interface MaestroService {
     //Listar Maestro por Documento de Identidad----------------------
     Mono<MaestroDTO> buscarMaestroPorDocumentoIdentidad(String documentoIdentidad);
 
+    //Buscar Maestro por Documento de Identidad
     Mono<Maestro> findByDocumentoIdentidad(String documentoIdentidad);
+
+    //Buscar Maestro por Materia en Especifico
+    Flux<Maestro> findByMaterias(String materia);
+
+    //Listar Maestro por Materia----------------------
+    Flux<MaestroDTO> buscarMaestroPorMateria(String materia);
 }
