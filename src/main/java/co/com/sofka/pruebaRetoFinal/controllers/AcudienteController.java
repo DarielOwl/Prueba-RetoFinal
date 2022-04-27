@@ -30,14 +30,14 @@ public class AcudienteController {
         return this.acudienteService.findAll();
     }
 
-    //Actualizar Maestro
+    //Actualizar Acudiente
     @PutMapping("/updateAcudiente/{id}")
     private Mono<Acudiente> update(@PathVariable("id") String id, @RequestBody Acudiente acudiente) {
         return this.acudienteService.update(id, acudiente)
                 .flatMap(acudiente1 -> Mono.just(acudiente1)).switchIfEmpty(Mono.empty());
     }
 
-    //Eliminar Maestro
+    //Eliminar Acudiente
     @DeleteMapping("/removeAcudiente/{id}")
     private Mono<Acudiente> delete(@PathVariable("id") String id) {
         return this.acudienteService.delete(id)

@@ -56,4 +56,10 @@ public class MaestroController {
         return this.maestroService.buscarMaestroPorDocumentoIdentidad(documentoIdentidad);
     }
 
+    //Listar Maestro por Materia----------------------
+    @GetMapping(value = "/searchMaestroByMateria/{materia}")
+    public Flux<MaestroDTO> buscarMaestroPorMateria(@PathVariable("materia") String materia){
+        return this.maestroService.buscarMaestroPorMateria(materia);
+    }
+
 }

@@ -1,5 +1,6 @@
-package co.com.sofka.pruebaRetoFinal.models;
+package co.com.sofka.pruebaRetoFinal.DTOs;
 
+import co.com.sofka.pruebaRetoFinal.models.Horario;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,12 +11,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-@Document(collection = "clases")
 @Getter @Setter @NoArgsConstructor //-> Nos ahorra en escribir codigo repetitivo
-public class Clase {
-
-    @Id
-    private String id = UUID.randomUUID().toString().substring(0, 10);
+public class ClaseDTO {
 
     //Atributos de Clase-----------------
     private String idProfesor;
@@ -24,7 +21,7 @@ public class Clase {
     private List<Horario> horario;
 
     //Constructor de Asignacion---------------
-    public Clase(String idProfesor, String nombreMateria, String nombreProfesor, List<Horario> horario) {
+    public ClaseDTO(String idProfesor, String nombreMateria, String nombreProfesor, List<Horario> horario) {
         this.idProfesor = idProfesor;
         this.nombreMateria = nombreMateria;
         this.nombreProfesor = nombreProfesor;
@@ -36,20 +33,19 @@ public class Clase {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Clase clase = (Clase) o;
-        return Objects.equals(id, clase.id) && Objects.equals(idProfesor, clase.idProfesor) && Objects.equals(nombreMateria, clase.nombreMateria) && Objects.equals(nombreProfesor, clase.nombreProfesor) && Objects.equals(horario, clase.horario);
+        ClaseDTO claseDTO = (ClaseDTO) o;
+        return Objects.equals(idProfesor, claseDTO.idProfesor) && Objects.equals(nombreMateria, claseDTO.nombreMateria) && Objects.equals(nombreProfesor, claseDTO.nombreProfesor) && Objects.equals(horario, claseDTO.horario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idProfesor, nombreMateria, nombreProfesor, horario);
+        return Objects.hash(idProfesor, nombreMateria, nombreProfesor, horario);
     }
 
     @Override
     public String toString() {
-        return "Clase{" +
-                "id='" + id + '\'' +
-                ", idProfesor='" + idProfesor + '\'' +
+        return "ClaseDTO{" +
+                "idProfesor='" + idProfesor + '\'' +
                 ", nombreMateria='" + nombreMateria + '\'' +
                 ", nombreProfesor='" + nombreProfesor + '\'' +
                 ", horario=" + horario +
