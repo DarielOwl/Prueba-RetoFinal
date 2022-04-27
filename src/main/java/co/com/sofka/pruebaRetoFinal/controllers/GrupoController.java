@@ -93,18 +93,18 @@ public class GrupoController {
     }
 
     //Agregar estudiante a un grupo mediante ID estudiante e ID grupo.
-    @PutMapping("/addEstudianteToGrupo/{idDocumentoIdentidad}/{idGrupo}")
-    private Mono<Grupo> addEstudianteToGrupo(@PathVariable("idDocumentoIdentidad") String idDocumentoIdentidad,@PathVariable("idGrupo") String idGrupo){
+    @PutMapping("/addEstudianteToGrupo/{idEstudiante}/{idGrupo}")
+    private Mono<Grupo> addEstudianteToGrupo(@PathVariable("idEstudiante") String idDocumentoIdentidad,@PathVariable("idGrupo") String idGrupo){
         try{
             Grupo grupo = this.grupoService.findById(idGrupo).block();
-            Estudiante estudiante = this.estudianteService.findByDocumentoIdentidad(idDocumentoIdentidad).block();
+            Estudiante estudiante = this.estudianteService.findById(idDocumentoIdentidad).block();
             List<Estudiante> estudianteList = grupo.getEstudiantes();
             estudianteList.add(estudiante);
             grupo.setEstudiantes(estudianteList);
             return this.grupoService.save(grupo);
         }catch (Exception e){
             Grupo grupo = this.grupoService.findById(idGrupo).block();
-            Estudiante estudiante = this.estudianteService.findByDocumentoIdentidad(idDocumentoIdentidad).block();
+            Estudiante estudiante = this.estudianteService.findById(idDocumentoIdentidad).block();
             List<Estudiante> estudianteList = new ArrayList<Estudiante>();
             estudianteList.add(estudiante);
             grupo.setEstudiantes(estudianteList);
