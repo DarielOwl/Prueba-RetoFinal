@@ -24,9 +24,9 @@ public class Maestro {
     private String direccion;
     private String celular;
     private String especialidad;
-    private List<String> materias;
-    private List<String> grupos;
-    private Boolean estado;
+    private List<String> materias = null;
+    private List<String> grupos = null;
+    private Boolean estado = true;
 
     //Constructor de Asignacion--------------
     public Maestro(String documentoIdentidad, String nombre, String correo, String direccion, String celular, Boolean estado) {
