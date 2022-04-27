@@ -67,4 +67,23 @@ public class MaestroServiceImpl implements MaestroService {
         return this.maestroRepository.findByDocumentoIdentidad(documentoIdentidad);
     }
 
+    @Override
+    public Mono<Maestro> updateMateriaDelMaestro(String id, String materia) {
+
+        //Buscamos el maestro para actualizar la lista de materias
+        //Maestro updateMaestro = this.maestroRepository.findById(id).block();
+
+        //A la lista de materias le añadimos la nueva materia
+        //updateMaestro.getMaterias().add(materia);
+
+        //return null;
+
+        return this.maestroRepository.findById(id).flatMap(maestroUpdate -> {
+                    maestroUpdate.setId(id);
+                    maestroUpdate.getMaterias().add(materia);
+                    return save(maestroUpdate);
+                })
+                .switchIfEmpty(Mono.empty());
+    }
+
 }

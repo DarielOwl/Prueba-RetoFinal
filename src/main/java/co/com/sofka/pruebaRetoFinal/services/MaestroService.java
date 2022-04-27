@@ -21,4 +21,7 @@ public interface MaestroService {
     Mono<MaestroDTO> buscarMaestroPorDocumentoIdentidad(String documentoIdentidad);
 
     Mono<Maestro> findByDocumentoIdentidad(String documentoIdentidad);
+
+    Mono<Maestro> updateMateriaDelMaestro(String id, String materia);
+
 }

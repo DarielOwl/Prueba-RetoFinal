@@ -24,14 +24,14 @@ public class MaestroController {
     //Guardar un Maestro
     @PostMapping("/addMaestro")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<MaestroDTO> save(@RequestBody MaestroDTO maestroDTO) {
-        return this.maestroService.save(maestroMapper.createMaestro(maestroDTO)).thenReturn(maestroDTO);
+    private Mono<Maestro> save(@RequestBody Maestro maestro) {
+        return this.maestroService.save(maestro);
     }
 
     //Mostrar Todos los Maestros
     @GetMapping(value = "/allMaestro")
-    private Flux<MaestroDTO> findAll() {
-        return maestroMapper.convertirMaestroDTOs(this.maestroService.findAll());
+    private Flux<Maestro> findAll() {
+        return this.maestroService.findAll();
     }
 
     //Actualizar Maestro
@@ -55,5 +55,15 @@ public class MaestroController {
     public Mono<MaestroDTO> buscarMaestroPorDocumentoIdentidad(@PathVariable("documentoIdentidad") String documentoIdentidad){
         return this.maestroService.buscarMaestroPorDocumentoIdentidad(documentoIdentidad);
     }
+
+    //Actualizar Lista de Materias de Maestro
+    @PutMapping("/updateMateriaMaestro/{id}/{materia}")
+    private Mono<Maestro> updateMateriaDelMaestro(@PathVariable("id") String id, @PathVariable String materia) {
+
+        return this.maestroService.updateMateriaDelMaestro(id, materia);
+                //.flatMap(maestro1 -> Mono.just(maestro1)).switchIfEmpty(Mono.empty());
+
+    }
+
 
 }
