@@ -16,7 +16,6 @@ public class EstudianteMapper {
 
         //Creamos el EstudianteDTO a partir del estudianteOriginal
         EstudianteDTO estudianteDTO = new EstudianteDTO(
-                estudiante.getGrupo(),
                 estudiante.getDocumentoIdentidad(),
                 estudiante.getNombre(),
                 estudiante.getGrado(),
@@ -41,12 +40,12 @@ public class EstudianteMapper {
 
         //Creamos el Estudiante a partir del EstudianteDTO
         Estudiante estudiante = new Estudiante(
-                estudianteDTO.getGrupo(),
                 estudianteDTO.getDocumentoIdentidad(),
                 estudianteDTO.getNombre(),
                 estudianteDTO.getGrado(),
                 estudianteDTO.getEdad(),
-                estudianteDTO.getEstado()
+                estudianteDTO.getEstado(),
+                estudianteDTO.getDocumentoIdentidadAcudiente()
         );
 
         return estudiante; //Y retornamos el nuevo objeto

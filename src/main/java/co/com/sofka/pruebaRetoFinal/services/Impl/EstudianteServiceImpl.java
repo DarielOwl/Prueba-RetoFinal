@@ -47,5 +47,15 @@ public class EstudianteServiceImpl implements EstudianteService {
                 .findById(id)
                 .flatMap(estudianteDelete -> this.estudianteRepository.deleteById(estudianteDelete.getId()).thenReturn(estudianteDelete));
     }
+    
+    @Override
+    public Mono<Estudiante> findById(String id){
+        return this.estudianteRepository.findById(id);
+    }
+
+    @Override
+    public Mono<Estudiante> findByDocumentoIdentidad(String documentoIdentidad){
+        return this.estudianteRepository.findByDocumentoIdentidad(documentoIdentidad);
+    }
     //-----------------CRUD-----------------//
 }

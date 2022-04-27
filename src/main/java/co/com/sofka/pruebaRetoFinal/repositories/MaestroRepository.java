@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 
 public interface MaestroRepository extends ReactiveMongoRepository<Maestro,String> {
-
+    Mono<Maestro> findById(String id);
     Mono<Maestro> findByDocumentoIdentidad(String documentoIdentidad);
 }

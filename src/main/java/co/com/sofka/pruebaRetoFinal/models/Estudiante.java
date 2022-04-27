@@ -56,6 +56,8 @@ public class Estudiante {
         this.estado = estado;
     }
 
+
+
     //Otros Metodos-------------------------
     @Override
     public boolean equals(Object o) {

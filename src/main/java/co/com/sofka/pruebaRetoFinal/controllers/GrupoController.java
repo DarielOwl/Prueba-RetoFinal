@@ -3,6 +3,7 @@ package co.com.sofka.pruebaRetoFinal.controllers;
 import co.com.sofka.pruebaRetoFinal.models.Estudiante;
 import co.com.sofka.pruebaRetoFinal.models.Grupo;
 import co.com.sofka.pruebaRetoFinal.models.Maestro;
+import co.com.sofka.pruebaRetoFinal.services.Impl.EstudianteServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.GrupoServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.MaestroServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ import java.util.List;
 public class GrupoController {
 
     @Autowired
-    GrupoServiceImpl grupoService;
+    GrupoServiceImpl grupoService = new GrupoServiceImpl();
+    @Autowired
+    EstudianteServiceImpl estudianteService = new EstudianteServiceImpl();
 
     //-----------------CRUD-----------------//
     //Guardar un Grupo
@@ -81,6 +84,32 @@ public class GrupoController {
             }
         }
         return this.grupoService.update(idGrupo,grupo);
+    }
+
+    //Agregar estudiante a un grupo mediante ID estudiante e ID grupo.
+    @PutMapping("/addEstudianteToGrupo/{idDocumentoIdentidad}/{idGrupo}")
+    private Mono<Grupo> addEstudianteToGrupo(@PathVariable("idDocumentoIdentidad") String idDocumentoIdentidad,@PathVariable("idGrupo") String idGrupo){
+        try{
+            Grupo grupo = this.grupoService.findById(idGrupo).block();
+            Estudiante estudiante = this.estudianteService.findByDocumentoIdentidad(idDocumentoIdentidad).block();
+            List<Estudiante> estudianteList = grupo.getEstudiantes();
+            estudianteList.add(estudiante);
+            grupo.setEstudiantes(estudianteList);
+            return this.grupoService.save(grupo);
+        }catch (Exception e){
+            Grupo grupo = this.grupoService.findById(idGrupo).block();
+            Estudiante estudiante = this.estudianteService.findByDocumentoIdentidad(idDocumentoIdentidad).block();
+            List<Estudiante> estudianteList = new ArrayList<Estudiante>();
+            estudianteList.add(estudiante);
+            grupo.setEstudiantes(estudianteList);
+            return this.grupoService.save(grupo);
+        }
+    }
+
+    //Obtener lista de estudiantes de un grupo mediante el ID del grupo.
+    @GetMapping("/allEstudiantesFromGrupo/{idGrupo}")
+    private Flux<List<Estudiante>> allEstudiantesFromGrupo(@PathVariable("idGrupo") String id){
+        return Flux.just(grupoService.findById(id).block().getEstudiantes());
     }
 
     //Agregar un estudiante

@@ -16,6 +16,10 @@ public interface EstudianteService {
 
     Mono<Estudiante> delete(String id);
 
+    Mono<Estudiante> findById(String id);
+
+    Mono<Estudiante> findByDocumentoIdentidad(String documentoIdentidad);
+
     //-----------------CRUD-----------------//
 
 }
