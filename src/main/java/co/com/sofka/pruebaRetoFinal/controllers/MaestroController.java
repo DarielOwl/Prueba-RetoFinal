@@ -59,10 +59,7 @@ public class MaestroController {
     //Actualizar Lista de Materias de Maestro
     @PutMapping("/updateMateriaMaestro/{id}/{materia}")
     private Mono<Maestro> updateMateriaDelMaestro(@PathVariable("id") String id, @PathVariable String materia) {
-
         return this.maestroService.updateMateriaDelMaestro(id, materia);
-                //.flatMap(maestro1 -> Mono.just(maestro1)).switchIfEmpty(Mono.empty());
-
     }
 
 
