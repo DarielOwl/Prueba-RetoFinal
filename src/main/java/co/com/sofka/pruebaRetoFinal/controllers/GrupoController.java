@@ -80,35 +80,41 @@ public class GrupoController {
     //Eliminar estudiante de un grupo mediante ID estudiante e ID grupo.
     @PutMapping("/deleteEstudianteFromGrupo/{idEstudiante}/{idGrupo}")
     private Mono<Grupo> deleteEstudianteFromGrupo(@PathVariable("idEstudiante") String idEstudiante,@PathVariable("idGrupo") String idGrupo){
-        Grupo grupo = this.grupoService.findById(idGrupo).block();
-        List<Estudiante> estudianteList = grupo.getEstudiantes();
-        Iterator iterator = estudianteList.iterator();
-        while(iterator.hasNext()){
-            Estudiante e =(Estudiante) iterator.next();
-            if(e.getId().equalsIgnoreCase(idEstudiante)){
-                iterator.remove();
+        try{
+            Grupo grupo = this.grupoService.findById(idGrupo).block();
+            List<Estudiante> estudianteList = grupo.getEstudiantes();
+            Iterator iterator = estudianteList.iterator();
+            while(iterator.hasNext()){
+                Estudiante e =(Estudiante) iterator.next();
+                if(e.getId().equalsIgnoreCase(idEstudiante)){
+                    iterator.remove();
+                }
             }
+            return this.grupoService.update(idGrupo,grupo);
+        }catch (Exception e){
+            return Mono.empty();
         }
-        return this.grupoService.update(idGrupo,grupo);
     }
 
     //Agregar estudiante a un grupo mediante ID estudiante e ID grupo.
     @PutMapping("/addEstudianteToGrupo/{idEstudiante}/{idGrupo}")
-    private Mono<Grupo> addEstudianteToGrupo(@PathVariable("idEstudiante") String idDocumentoIdentidad,@PathVariable("idGrupo") String idGrupo){
+    private Mono<Estudiante> addEstudianteToGrupo(@PathVariable("idEstudiante") String idDocumentoIdentidad,@PathVariable("idGrupo") String idGrupo){
         try{
             Grupo grupo = this.grupoService.findById(idGrupo).block();
             Estudiante estudiante = this.estudianteService.findById(idDocumentoIdentidad).block();
+            estudiante.setGrupo(grupo.getId());
             List<Estudiante> estudianteList = grupo.getEstudiantes();
             estudianteList.add(estudiante);
             grupo.setEstudiantes(estudianteList);
-            return this.grupoService.save(grupo);
+            return this.grupoService.save(grupo).then(this.estudianteService.save(estudiante));
         }catch (Exception e){
             Grupo grupo = this.grupoService.findById(idGrupo).block();
             Estudiante estudiante = this.estudianteService.findById(idDocumentoIdentidad).block();
+            estudiante.setGrupo(grupo.getId());
             List<Estudiante> estudianteList = new ArrayList<Estudiante>();
             estudianteList.add(estudiante);
             grupo.setEstudiantes(estudianteList);
-            return this.grupoService.save(grupo);
+            return this.grupoService.save(grupo).then(this.estudianteService.save(estudiante));
         }
     }
 

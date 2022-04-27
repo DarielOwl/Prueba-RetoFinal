@@ -36,7 +36,8 @@ class EstudianteServiceImplTest {
                 "Federico",
                 6,
                 21,
-                true));
+                true,
+                "2222222"));
     }
 
     @Test
@@ -55,7 +56,8 @@ class EstudianteServiceImplTest {
                 "Federico",
                 6,
                 21,
-                true));
+                true,
+                "222222"));
         when(estudianteService.save(any())).thenReturn(estudianteMono);
         assertNotNull(estudianteService.save(new Estudiante()));
     }

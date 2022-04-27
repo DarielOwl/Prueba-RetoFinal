@@ -47,13 +47,14 @@ public class Estudiante {
     }
 
     //Cosntructor sin ID----------------
-    public Estudiante(String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado) {
+    public Estudiante(String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado, String documentoIdentidadAcudiente) {
         this.grupo = grupo;
         this.documentoIdentidad = documentoIdentidad;
         this.nombre = nombre;
         this.grado = grado;
         this.edad = edad;
         this.estado = estado;
+        this.documentoIdentidadAcudiente = documentoIdentidadAcudiente;
     }
 
 

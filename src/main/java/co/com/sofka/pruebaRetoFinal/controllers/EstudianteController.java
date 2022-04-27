@@ -55,6 +55,18 @@ public class EstudianteController {
         }
     }
 
+    @GetMapping("/allEstudiantesSinGrupoByGrado/{grado}")
+    private Flux<Estudiante> findAllEstudiantesSinGrupoByGrado(@PathVariable("grado") Integer grado){
+        try{
+            return this.estudianteService.findAll()
+                    .filter(e -> e.getGrado().equals(grado))
+                    .filter(e2 -> e2.getGrupo()==null || e2.getGrupo().equalsIgnoreCase(""));
+            //return this.estudianteService.findAll().filter(e -> e.getGrupo()==null || e.getGrupo().equalsIgnoreCase(""));
+        }catch (Exception e){
+            return Flux.empty();
+        }
+    }
+
     //-----------------CRUD-----------------//
 
 
