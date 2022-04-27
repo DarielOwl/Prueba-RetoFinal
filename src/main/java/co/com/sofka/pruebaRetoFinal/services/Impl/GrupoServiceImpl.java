@@ -1,6 +1,8 @@
 package co.com.sofka.pruebaRetoFinal.services.Impl;
 
+import co.com.sofka.pruebaRetoFinal.models.Estudiante;
 import co.com.sofka.pruebaRetoFinal.models.Grupo;
+import co.com.sofka.pruebaRetoFinal.repositories.EstudianteRepository;
 import co.com.sofka.pruebaRetoFinal.repositories.GrupoRepository;
 import co.com.sofka.pruebaRetoFinal.services.GrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ public class GrupoServiceImpl implements GrupoService {
 
     @Autowired
     GrupoRepository grupoRepository;
+
+    @Autowired
+    EstudianteRepository estudianteRepository;
 
     //-----------------CRUD-----------------//
     @Override
