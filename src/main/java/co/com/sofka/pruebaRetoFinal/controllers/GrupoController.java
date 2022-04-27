@@ -79,7 +79,7 @@ public class GrupoController {
 
     //Eliminar estudiante de un grupo mediante ID estudiante e ID grupo.
     @PutMapping("/deleteEstudianteFromGrupo/{idEstudiante}/{idGrupo}")
-    private Mono<Grupo> deleteEstudianteFromGrupo(@PathVariable("idEstudiante") String idEstudiante,@PathVariable("idGrupo") String idGrupo){
+    private Mono<Estudiante> deleteEstudianteFromGrupo(@PathVariable("idEstudiante") String idEstudiante,@PathVariable("idGrupo") String idGrupo){
         try{
             Grupo grupo = this.grupoService.findById(idGrupo).block();
             Estudiante estudiante = this.estudianteService.findById(idEstudiante).block();
@@ -92,7 +92,7 @@ public class GrupoController {
                 }
             }
             estudiante.setGrupo("");
-            return this.estudianteService.save(estudiante).then(this.grupoService.update(idGrupo,grupo));
+            return this.grupoService.update(idGrupo,grupo).then(this.estudianteService.save(estudiante));
         }catch (Exception e){
             return Mono.empty();
         }
