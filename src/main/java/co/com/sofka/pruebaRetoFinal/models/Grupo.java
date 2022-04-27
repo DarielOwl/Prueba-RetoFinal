@@ -31,7 +31,6 @@ public class Grupo {
 
     //Constructor de Asignacion--------------
 
-
     public Grupo(String maestro, String horarios, Integer grado, Integer maximoCupos, List<Estudiante> estudiantes, List<Nota> notas, String curso, String nombre) {
         this.maestro = maestro;
         this.horarios = horarios;
@@ -43,7 +42,6 @@ public class Grupo {
         this.nombre = nombre;
         this.estado=true;
     }
-
     public Grupo(Integer grado, String curso, String nombre) {
         this.grado = grado;
         this.curso = curso;

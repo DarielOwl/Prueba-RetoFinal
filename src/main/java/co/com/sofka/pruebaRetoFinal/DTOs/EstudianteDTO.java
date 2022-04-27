@@ -30,6 +30,16 @@ public class EstudianteDTO {
         this.estado = estado;
     }
 
+    public EstudianteDTO(String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado, String documentoIdentidadAcudiente) {
+        this.grupo = "";
+        this.documentoIdentidad = documentoIdentidad;
+        this.nombre = nombre;
+        this.grado = grado;
+        this.edad = edad;
+        this.estado = estado;
+        this.documentoIdentidadAcudiente = documentoIdentidadAcudiente;
+    }
+
     public EstudianteDTO(String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado, String documentoIdentidadAcudiente) {
         this.grupo = grupo;
         this.documentoIdentidad = documentoIdentidad;
