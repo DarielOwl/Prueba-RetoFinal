@@ -17,7 +17,7 @@ import java.util.List;
 public class MaestroServiceImpl implements MaestroService {
 
     @Autowired
-    MaestroRepository maestroRepository; //Instancia del repositorio Estudiante
+    MaestroRepository maestroRepository; //Instancia del repositorio Maestro
 
     @Autowired
     MaestroMapper maestroMapper; //Instancia del repositorio Estudiante
@@ -76,7 +76,7 @@ public class MaestroServiceImpl implements MaestroService {
         return this.maestroRepository.findById(id).flatMap(maestroUpdate -> {
 
                     //Verificamos que la lista este vacia
-                    if (maestroUpdate.getMaterias() == null){
+                    if (maestroUpdate.getMaterias() == null) {
                         //Obtener la lista de Materia y añadirle la nueva materia
                         List<String> materiaUpdate = new ArrayList<String>();
                         materiaUpdate.add(materia);

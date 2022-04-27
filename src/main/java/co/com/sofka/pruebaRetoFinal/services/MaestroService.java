@@ -22,6 +22,7 @@ public interface MaestroService {
 
     Mono<Maestro> findByDocumentoIdentidad(String documentoIdentidad);
 
+    //Actualizar las materias del Maestro
     Mono<Maestro> updateMateriaDelMaestro(String id, String materia);
 
 }
