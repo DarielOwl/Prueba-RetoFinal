@@ -28,4 +28,7 @@ public interface MaestroService {
 
     //Listar Maestro por Materia----------------------
     Flux<MaestroDTO> buscarMaestroPorMateria(String materia);
+    //Actualizar las materias del Maestro
+    Mono<Maestro> updateMateriaDelMaestro(String id, String materia);
+
 }

@@ -24,8 +24,9 @@ public class Maestro {
     private String direccion;
     private String celular;
     private String especialidad;
-    private List<String> materias;
-    private Boolean estado;
+    private List<String> materias = null;
+    private List<String> grupos = null;
+    private Boolean estado = true;
 
     //Constructor de Asignacion--------------
     public Maestro(String documentoIdentidad, String nombre, String correo, String direccion, String celular, Boolean estado) {
@@ -49,18 +50,31 @@ public class Maestro {
         this.estado = estado;
     }
 
+    //Constructor de Maestro (tiene Lista de Grupos)--------------
+    public Maestro(String documentoIdentidad, String nombre, String correo, String direccion, String celular, String especialidad, List<String> materias, List<String> grupos, Boolean estado) {
+        this.documentoIdentidad = documentoIdentidad;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.direccion = direccion;
+        this.celular = celular;
+        this.especialidad = especialidad;
+        this.materias = materias;
+        this.grupos = grupos;
+        this.estado = estado;
+    }
+
     //Otros Metodos-------------------------
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Maestro maestro = (Maestro) o;
-        return Objects.equals(id, maestro.id) && Objects.equals(documentoIdentidad, maestro.documentoIdentidad) && Objects.equals(nombre, maestro.nombre) && Objects.equals(correo, maestro.correo) && Objects.equals(direccion, maestro.direccion) && Objects.equals(celular, maestro.celular) && Objects.equals(especialidad, maestro.especialidad) && Objects.equals(materias, maestro.materias) && Objects.equals(estado, maestro.estado);
+        return Objects.equals(id, maestro.id) && Objects.equals(documentoIdentidad, maestro.documentoIdentidad) && Objects.equals(nombre, maestro.nombre) && Objects.equals(correo, maestro.correo) && Objects.equals(direccion, maestro.direccion) && Objects.equals(celular, maestro.celular) && Objects.equals(especialidad, maestro.especialidad) && Objects.equals(materias, maestro.materias) && Objects.equals(grupos, maestro.grupos) && Objects.equals(estado, maestro.estado);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, documentoIdentidad, nombre, correo, direccion, celular, especialidad, materias, estado);
+        return Objects.hash(id, documentoIdentidad, nombre, correo, direccion, celular, especialidad, materias, grupos, estado);
     }
 
     @Override
@@ -74,7 +88,9 @@ public class Maestro {
                 ", celular='" + celular + '\'' +
                 ", especialidad='" + especialidad + '\'' +
                 ", materias=" + materias +
+                ", grupos=" + grupos +
                 ", estado=" + estado +
                 '}';
     }
+
 }

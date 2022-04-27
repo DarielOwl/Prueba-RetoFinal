@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class MaestroServiceImpl implements MaestroService {
 
     @Autowired
-    MaestroRepository maestroRepository; //Instancia del repositorio Estudiante
+    MaestroRepository maestroRepository; //Instancia del repositorio Maestro
 
     @Autowired
     MaestroMapper maestroMapper; //Instancia del repositorio Estudiante
@@ -82,6 +85,35 @@ public class MaestroServiceImpl implements MaestroService {
 
         //Lo convierte a Mono<Maestro> y lo manda
         return maestroMapper.convertirMaestroDTOs(maestro);
+    @Override
+    public Mono<Maestro> updateMateriaDelMaestro(String id, String materia) {
+
+        return this.maestroRepository.findById(id).flatMap(maestroUpdate -> {
+
+                    //Verificamos que la lista este vacia
+                    if (maestroUpdate.getMaterias() == null) {
+                        //Obtener la lista de Materia y añadirle la nueva materia
+                        List<String> materiaUpdate = new ArrayList<String>();
+                        materiaUpdate.add(materia);
+
+                        //Setiar la Id Maestro y la lista de Materias
+                        maestroUpdate.setId(id);
+                        maestroUpdate.setMaterias(materiaUpdate);
+
+                        return save(maestroUpdate);
+                    }
+
+                    //Si la lista no esta vacia hacemos simplemente añadimos a a lista
+                    List<String> materiaUpdate = maestroUpdate.getMaterias();
+                    materiaUpdate.add(materia);
+
+                    //Setiar la Id Maestro y la lista de Materias
+                    maestroUpdate.setId(id);
+                    maestroUpdate.setMaterias(materiaUpdate);
+
+                    return save(maestroUpdate);
+                })
+                .switchIfEmpty(Mono.empty());
     }
 
 }
