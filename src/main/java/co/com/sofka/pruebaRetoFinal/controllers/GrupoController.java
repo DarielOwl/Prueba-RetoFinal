@@ -82,6 +82,7 @@ public class GrupoController {
     private Mono<Grupo> deleteEstudianteFromGrupo(@PathVariable("idEstudiante") String idEstudiante,@PathVariable("idGrupo") String idGrupo){
         try{
             Grupo grupo = this.grupoService.findById(idGrupo).block();
+            Estudiante estudiante = this.estudianteService.findById(idEstudiante).block();
             List<Estudiante> estudianteList = grupo.getEstudiantes();
             Iterator iterator = estudianteList.iterator();
             while(iterator.hasNext()){
@@ -90,7 +91,8 @@ public class GrupoController {
                     iterator.remove();
                 }
             }
-            return this.grupoService.update(idGrupo,grupo);
+            estudiante.setGrupo("");
+            return this.estudianteService.save(estudiante).then(this.grupoService.update(idGrupo,grupo));
         }catch (Exception e){
             return Mono.empty();
         }
