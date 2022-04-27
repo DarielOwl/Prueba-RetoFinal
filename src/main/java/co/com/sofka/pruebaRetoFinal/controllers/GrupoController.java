@@ -109,7 +109,12 @@ public class GrupoController {
     //Obtener lista de estudiantes de un grupo mediante el ID del grupo.
     @GetMapping("/allEstudiantesFromGrupo/{idGrupo}")
     private Flux<List<Estudiante>> allEstudiantesFromGrupo(@PathVariable("idGrupo") String id){
-        return Flux.just(grupoService.findById(id).block().getEstudiantes());
+        try{
+            return Flux.just(grupoService.findById(id).block().getEstudiantes());
+        }catch (Exception e){
+            return Flux.empty();
+        }
+
     }
 
     //Agregar un estudiante

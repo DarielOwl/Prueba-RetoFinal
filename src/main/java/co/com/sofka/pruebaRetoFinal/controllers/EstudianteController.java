@@ -48,7 +48,11 @@ public class EstudianteController {
     }
     @GetMapping("/allEstudiantesSinGrupo")
     private Flux<Estudiante> findAllEstudiantesSinGrupo(){
-        return this.estudianteService.findAll().filter(e -> e.getGrupo().isEmpty() || e.getGrupo().length()==0);
+        try{
+            return this.estudianteService.findAll().filter(e -> e.getGrupo()==null || e.getGrupo().equalsIgnoreCase(""));
+        }catch (Exception e){
+            return Flux.empty();
+        }
     }
 
     //-----------------CRUD-----------------//
