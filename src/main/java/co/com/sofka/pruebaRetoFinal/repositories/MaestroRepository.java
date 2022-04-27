@@ -8,6 +8,5 @@ import reactor.core.publisher.Mono;
 public interface MaestroRepository extends ReactiveMongoRepository<Maestro,String> {
     Mono<Maestro> findById(String id);
     Mono<Maestro> findByDocumentoIdentidad(String documentoIdentidad);
-
     Flux<Maestro> findByMaterias(String materia);
 }

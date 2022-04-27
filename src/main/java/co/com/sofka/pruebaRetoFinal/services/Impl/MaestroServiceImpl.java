@@ -84,4 +84,9 @@ public class MaestroServiceImpl implements MaestroService {
         return maestroMapper.convertirMaestroDTOs(maestro);
     }
 
+    @Override
+    public Mono<Maestro> findById(String id){
+        return maestroRepository.findById(id);
+    }
+
 }
