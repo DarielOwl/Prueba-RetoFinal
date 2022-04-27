@@ -116,4 +116,9 @@ public class MaestroServiceImpl implements MaestroService {
                 .switchIfEmpty(Mono.empty());
     }
 
+    @Override
+    public Mono<Maestro> findById(String id){
+        return maestroRepository.findById(id);
+    }
+
 }

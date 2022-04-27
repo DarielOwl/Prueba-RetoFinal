@@ -31,4 +31,7 @@ public interface MaestroService {
     //Actualizar las materias del Maestro
     Mono<Maestro> updateMateriaDelMaestro(String id, String materia);
 
+
+    //Buscar por ID
+    Mono<Maestro> findById(String id);
 }
