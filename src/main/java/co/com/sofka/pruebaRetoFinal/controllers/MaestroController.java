@@ -115,4 +115,19 @@ public class MaestroController {
         }
     }
 
+    //Obtener todas las Materias que tenga un Maestro
+    @GetMapping("/allMateriasFromMaestro{idMaestro}")
+    public Flux<Materia> allMateriasFromMaestro(@PathVariable("idMaestro") String idMaestro){
+       try{
+           List<String> materias= this.maestroService.findById(idMaestro).block().getMaterias();
+           List<Materia> materiaList = new ArrayList<Materia>();
+           for(String materia : materias){
+               materiaList.add(new Materia(materia));
+           }
+           return Flux.fromIterable(materiaList);
+       }catch (Exception e){
+           return Flux.empty();
+       }
+    }
+
 }

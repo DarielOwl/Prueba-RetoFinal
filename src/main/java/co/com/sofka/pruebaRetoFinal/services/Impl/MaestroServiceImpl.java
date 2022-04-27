@@ -85,6 +85,7 @@ public class MaestroServiceImpl implements MaestroService {
 
         //Lo convierte a Mono<Maestro> y lo manda
         return maestroMapper.convertirMaestroDTOs(maestro);
+    }
     @Override
     public Mono<Maestro> updateMateriaDelMaestro(String id, String materia) {
 
