@@ -46,9 +46,13 @@ public class GrupoController {
     @PutMapping("/updateGrupo/{id}")
     private Mono<Grupo> update(@PathVariable("id") String id, @RequestBody Grupo grupo) {
         try{
-            grupo.setEstado(true);
-            return this.grupoService.update(id, grupo)
-                    .flatMap(grupo1 -> Mono.just(grupo1)).switchIfEmpty(Mono.empty());
+            Grupo grupo1 = this.grupoService.findById(id).block();
+            grupo1.setEstado(true);
+            grupo1.setNombre(grupo.getNombre());
+            grupo1.setGrado(grupo.getGrado());
+            grupo1.setCurso(grupo.getCurso());
+            return this.grupoService.update(id, grupo1)
+                    .flatMap(grupo2 -> Mono.just(grupo1)).switchIfEmpty(Mono.empty());
         }catch (Exception e){
            return Mono.error(new Throwable("No existe el grupo con la id"+id));
         }
