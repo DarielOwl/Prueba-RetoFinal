@@ -24,7 +24,8 @@ public class MaestroMapper {
                 maestro.getCelular(),
                 maestro.getEspecialidad(),
                 maestro.getMaterias(),
-                maestro.getEstado()
+                maestro.getEstado(),
+                maestro.getIdGrupoDirector()
         );
 
         /*TODO: tener en cuenta alguna verificacion a futuro para crear el DTO*/
@@ -90,7 +91,8 @@ public class MaestroMapper {
                     maestro1.getCelular(),
                     maestro1.getEspecialidad(),
                     maestro1.getMaterias(),
-                    maestro1.getEstado()
+                    maestro1.getEstado(),
+                    maestro1.getIdGrupoDirector()
             );
             return maestroDTO;
         });

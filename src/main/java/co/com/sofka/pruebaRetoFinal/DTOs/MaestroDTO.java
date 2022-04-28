@@ -20,6 +20,7 @@ public class MaestroDTO {
     private String especialidad;
     private List<String> materias;
     private Boolean estado;
+    private String idGrupoDirector;
 
     //Constructor de Maestro--------------
     public MaestroDTO(String documentoIdentidad, String nombre, String correo, String direccion, String celular, Boolean estado) {
@@ -32,7 +33,7 @@ public class MaestroDTO {
     }
 
     //Constructor Completo de Maestro (tiene Especialidad y Lista de Materias)--------------
-    public MaestroDTO(String id, String documentoIdentidad, String nombre, String correo, String direccion, String celular, String especialidad, List<String> materias, Boolean estado) {
+    public MaestroDTO(String id, String documentoIdentidad, String nombre, String correo, String direccion, String celular, String especialidad, List<String> materias, Boolean estado, String idGrupoDirector) {
         this.id=id;
         this.documentoIdentidad = documentoIdentidad;
         this.nombre = nombre;
@@ -42,6 +43,7 @@ public class MaestroDTO {
         this.especialidad = especialidad;
         this.materias = materias;
         this.estado = estado;
+        this.idGrupoDirector=idGrupoDirector;
     }
 
     //Otros Metodos-------------------------

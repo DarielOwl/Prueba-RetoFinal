@@ -27,6 +27,7 @@ public class Maestro {
     private List<String> materias = null;
     private List<String> grupos = null;
     private Boolean estado = true;
+    private String idGrupoDirector;
 
     //Constructor de Asignacion--------------
     public Maestro(String documentoIdentidad, String nombre, String correo, String direccion, String celular, Boolean estado) {
@@ -51,7 +52,7 @@ public class Maestro {
     }
 
     //Constructor de Maestro (tiene Lista de Grupos)--------------
-    public Maestro(String id, String documentoIdentidad, String nombre, String correo, String direccion, String celular, String especialidad, List<String> materias, List<String> grupos, Boolean estado) {
+    public Maestro(String id, String documentoIdentidad, String nombre, String correo, String direccion, String celular, String especialidad, List<String> materias, List<String> grupos, Boolean estado, String idGrupoDirector) {
         this.id=id;
         this.documentoIdentidad = documentoIdentidad;
         this.nombre = nombre;
@@ -62,7 +63,10 @@ public class Maestro {
         this.materias = materias;
         this.grupos = grupos;
         this.estado = estado;
+        this.idGrupoDirector=idGrupoDirector;
     }
+
+
 
     //Otros Metodos-------------------------
     @Override

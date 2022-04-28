@@ -181,13 +181,54 @@ public class GrupoController {
             @PathVariable("idMaestro") String idMaestro,
             @PathVariable("nombreMateria") String nombreMateria,
             @RequestBody List<Horario> horarios){
-        return this.claseService
-                .save(new Clase(
-                        new Materia(nombreMateria),
-                        horarios,
-                        this.maestroService.findById(idMaestro).block())
-                );
+        try{
+            Grupo grupoMono = this.grupoService.findById(idGrupo).block();
+            Clase clase = new Clase(
+                    new Materia(nombreMateria),
+                    horarios,
+                    this.maestroService.findById(idMaestro).block());
+            if(grupoMono.getClases()==null){
+                List<Clase> claseList = new ArrayList<Clase>();
+                claseList.add(clase);
+                grupoMono.setClases(claseList);
+                return this.grupoService.update(idGrupo,grupoMono).then(this.claseService.save(clase));
+            }
+            grupoMono.getClases().add(clase);
+            return this.grupoService.update(idGrupo,grupoMono).then(this.claseService.save(clase));
+        }catch (Exception e){
+            return Mono.empty();
+        }
     }
+
+    //URL para hacer PUT de maestro, que vincule al maestro como director de grupo a un grupo,
+    @PutMapping("/addDirectorToGrupo/{idGrupo}/{idMaestro}")
+    public Mono<Maestro> addDirectorToGrupo(@PathVariable("idGrupo") String idGrupo, @PathVariable("idMaestro") String idMaestro){
+        try{
+            Maestro maestro = this.maestroService.findById(idMaestro).block();
+            Grupo grupo = this.grupoService.findById(idGrupo).block();
+            maestro.setIdGrupoDirector(grupo.getId());
+            grupo.setDirector(maestro);
+            return this.grupoService.update(idGrupo,grupo).then(this.maestroService.update(idMaestro,maestro));
+        }catch (Exception e){
+            return Mono.empty();
+        }
+    }
+
+    //Eliminar director de un grupo segúin su idGrupo, idMaestro
+    @PutMapping("/removeDirectorFromGrupo/{idGrupo}/{idMaestro}")
+    public Mono<Maestro> removeDirectorFromGrupo(@PathVariable("idGrupo") String idGrupo, @PathVariable("idMaestro") String idMaestro){
+        try{
+            Maestro maestro = this.maestroService.findById(idMaestro).block();
+            Grupo grupo = this.grupoService.findById(idGrupo).block();
+            grupo.setDirector(null);
+            maestro.setIdGrupoDirector("");
+            return this.grupoService.update(idGrupo,grupo).then(this.maestroService.update(idMaestro,maestro));
+        }catch (Exception e){
+            return Mono.empty();
+        }
+    }
+
+
 
 
 }

@@ -29,6 +29,7 @@ public class Grupo {
     private String curso;
     private String nombre;
     private boolean estado;
+    private Maestro director;// <----- DIRECTOR DEL GRUPO
 
     /*TODO: Borrar horarios, maximoCupos y notas*/
     //Horarios y Materias (o sea una Lista de Clases)
@@ -63,6 +64,17 @@ public class Grupo {
         this.nombre = nombre; //8E (grado+curso)
         this.estado = true;
         this.clases = clases; //Horarios, materia y profesor
+    }
+
+    //Constructor que tiene CLASE DIRECTOR
+    public Grupo(String maestro, Integer grado, List<Estudiante> estudiantes, String curso, String nombre, Maestro director, List<Clase> clases) {
+        this.maestro = maestro;
+        this.grado = grado;
+        this.estudiantes = estudiantes;
+        this.curso = curso;
+        this.nombre = nombre;
+        this.director = director;
+        this.clases = clases;
     }
 
     //Otros Metodos-------------------------

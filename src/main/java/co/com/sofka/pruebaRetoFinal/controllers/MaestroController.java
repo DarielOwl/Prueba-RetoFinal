@@ -143,4 +143,15 @@ public class MaestroController {
        }
     }
 
+    //URL para hacer un GET de maestros activos.
+    @GetMapping("/allMaestrosActivos")
+    public Flux<Maestro> allMaestrosActivos(){
+        try{
+            return this.findAll().filter(m->m.getEstado()==true);
+        }catch (Exception e){
+            return Flux.empty();
+        }
+    }
+
+
 }
