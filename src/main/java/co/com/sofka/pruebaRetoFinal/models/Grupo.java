@@ -18,6 +18,7 @@ public class Grupo {
     private String id = UUID.randomUUID().toString().substring(0, 5);
 
     //Atributos Grupo-----------
+    //private Maestro director;
     private String maestro; //-> Esto seria maestroID
     private String horarios;
     private Integer grado;
@@ -28,6 +29,10 @@ public class Grupo {
     private String curso;
     private String nombre;
     private boolean estado;
+
+    /*TODO: Borrar horarios, maximoCupos y notas*/
+    //Horarios y Materias (o sea una Lista de Clases)
+    List<Clase> clases;
 
     //Constructor de Asignacion--------------
 
@@ -47,6 +52,17 @@ public class Grupo {
         this.curso = curso;
         this.nombre = nombre;
         this.estado = true;
+    }
+
+    //Constructor con Clase
+    public Grupo(String maestro, Integer grado, List<Estudiante> estudiantes, String curso, String nombre, boolean estado, List<Clase> clases) {
+        this.maestro = maestro; //Pepe
+        this.grado = grado; //8
+        this.estudiantes = estudiantes; //carlitox
+        this.curso = curso; //E
+        this.nombre = nombre; //8E (grado+curso)
+        this.estado = true;
+        this.clases = clases; //Horarios, materia y profesor
     }
 
     //Otros Metodos-------------------------
