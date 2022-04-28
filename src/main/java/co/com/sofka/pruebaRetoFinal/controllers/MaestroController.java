@@ -111,7 +111,15 @@ public class MaestroController {
             }
             return Flux.fromIterable(materiaList);
         }catch (Exception e){
-            return Flux.empty();
+            //Si el maestro no tiene materias, entonces retorna todas las materias del sistema
+            List<String> materias = new Materias().getMateria(); //Obtener materias del sistema (Lista de String)
+
+            //Crear una lista de materias y retornar en flux<Materia>
+            List<Materia> materiaList = new ArrayList<Materia>();
+            for(String materia: materias){
+                materiaList.add(new Materia(materia));
+            }
+            return Flux.fromIterable(materiaList);
         }
     }
 
