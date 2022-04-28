@@ -21,7 +21,8 @@ public class EstudianteController {
 
     @Autowired
     EstudianteServiceImpl estudianteService;
-    AcudienteServiceImpl acudienteService;
+    @Autowired
+    AcudienteServiceImpl acudienteService = new AcudienteServiceImpl();
     EstudianteMapper estudianteMapper = new EstudianteMapper();
 
     //-----------------CRUD-----------------//
