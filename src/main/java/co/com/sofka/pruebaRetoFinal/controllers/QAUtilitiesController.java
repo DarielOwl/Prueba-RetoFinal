@@ -25,8 +25,8 @@ public class QAUtilitiesController {
     @Autowired
     ClaseServiceImpl claseService = new ClaseServiceImpl();
 
-    @GetMapping("/clearDB/{key}")
-    public Mono<Void> limpiarBaseDeDatos(@PathVariable("key") String key){
+    @GetMapping("/clearDB")
+    public Mono<Void> limpiarBaseDeDatos(){
         try{
             return this.grupoService.deleteAll()
                     .then(this.estudianteService.deleteAll())
