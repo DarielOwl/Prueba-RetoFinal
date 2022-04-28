@@ -54,6 +54,7 @@ public class Grupo {
         this.estado = true;
     }
 
+    //Constructor con Clase
     public Grupo(String maestro, Integer grado, List<Estudiante> estudiantes, String curso, String nombre, boolean estado, List<Clase> clases) {
         this.maestro = maestro; //Pepe
         this.grado = grado; //8

@@ -1,6 +1,7 @@
 package co.com.sofka.pruebaRetoFinal.controllers;
 
 import co.com.sofka.pruebaRetoFinal.models.*;
+import co.com.sofka.pruebaRetoFinal.services.Impl.ClaseServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.EstudianteServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.GrupoServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.MaestroServiceImpl;
@@ -22,6 +23,9 @@ public class GrupoController {
     GrupoServiceImpl grupoService = new GrupoServiceImpl();
     @Autowired
     EstudianteServiceImpl estudianteService = new EstudianteServiceImpl();
+
+    @Autowired
+    ClaseServiceImpl claseService;
 
     //-----------------CRUD-----------------//
     //Guardar un Grupo
@@ -137,20 +141,6 @@ public class GrupoController {
     //Agregar un estudiante
 
 
-   /* //Verificamos que la lista este vacia
-        if (maestroUpdate.getMaterias() == null) {
-        //Obtener la lista de Materia y añadirle la nueva materia
-        List<String> materiaUpdate = new ArrayList<String>();
-        materiaUpdate.add(materia);
-
-        //Setiar la Id Maestro y la lista de Materias
-        maestroUpdate.setId(id);
-        maestroUpdate.setMaterias(materiaUpdate);
-
-        return save(maestroUpdate);
-    }
-*/
-
     //Añadir horario a un Grupo de Clase-------------
     @PutMapping("/addHorarioClase/{id}")
     private Mono<Clase> addHorarioDeClase(@PathVariable("id") String id,@RequestBody Clase clase){
@@ -174,5 +164,12 @@ public class GrupoController {
         //Si ya tiene grupo de clase, añade uno nuevo
         return this.grupoService.update(id,grupo).thenReturn(clase);
     }
+
+    //Listar horarios de un grupo en especifico
+    @GetMapping("/allHorariosGrupos/{id}")
+    private Flux<Clase> allHorariosDeGrupos(@PathVariable("id") String id){
+        return Flux.fromIterable(this.grupoService.findById(id).block().getClases());
+    }
+
 
 }
