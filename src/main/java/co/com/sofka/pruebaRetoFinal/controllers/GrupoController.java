@@ -1,6 +1,7 @@
 package co.com.sofka.pruebaRetoFinal.controllers;
 
 import co.com.sofka.pruebaRetoFinal.models.*;
+import co.com.sofka.pruebaRetoFinal.models.values.Materia;
 import co.com.sofka.pruebaRetoFinal.services.Impl.ClaseServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.EstudianteServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.GrupoServiceImpl;
@@ -23,6 +24,8 @@ public class GrupoController {
     GrupoServiceImpl grupoService = new GrupoServiceImpl();
     @Autowired
     EstudianteServiceImpl estudianteService = new EstudianteServiceImpl();
+    @Autowired
+    MaestroServiceImpl maestroService = new MaestroServiceImpl();
 
     @Autowired
     ClaseServiceImpl claseService;
@@ -169,6 +172,21 @@ public class GrupoController {
     @GetMapping("/allHorariosGrupos/{id}")
     private Flux<Clase> allHorariosDeGrupos(@PathVariable("id") String id){
         return Flux.fromIterable(this.grupoService.findById(id).block().getClases());
+    }
+
+    //Añadir horario a un Grupo de Clase-------------
+    @PutMapping("/addHorarioClase/{idGrupo}/{idMaestro}/{nombreMateria}")
+    private Mono<Clase> addHorarioDeClase(
+            @PathVariable("idGrupo") String idGrupo,
+            @PathVariable("idMaestro") String idMaestro,
+            @PathVariable("nombreMateria") String nombreMateria,
+            @RequestBody List<Horario> horarios){
+        return this.claseService
+                .save(new Clase(
+                        new Materia(nombreMateria),
+                        horarios,
+                        this.maestroService.findById(idMaestro).block())
+                );
     }
 
 

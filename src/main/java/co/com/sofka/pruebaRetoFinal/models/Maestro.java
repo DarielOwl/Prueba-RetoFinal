@@ -51,7 +51,8 @@ public class Maestro {
     }
 
     //Constructor de Maestro (tiene Lista de Grupos)--------------
-    public Maestro(String documentoIdentidad, String nombre, String correo, String direccion, String celular, String especialidad, List<String> materias, List<String> grupos, Boolean estado) {
+    public Maestro(String id, String documentoIdentidad, String nombre, String correo, String direccion, String celular, String especialidad, List<String> materias, List<String> grupos, Boolean estado) {
+        this.id=id;
         this.documentoIdentidad = documentoIdentidad;
         this.nombre = nombre;
         this.correo = correo;

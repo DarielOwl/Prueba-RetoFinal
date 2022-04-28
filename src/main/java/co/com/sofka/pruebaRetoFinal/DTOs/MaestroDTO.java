@@ -11,6 +11,7 @@ import java.util.Objects;
 public class MaestroDTO {
 
     //Atributos Maestro-----------
+    private String id;
     private String documentoIdentidad;
     private String nombre;
     private String correo;
@@ -31,7 +32,8 @@ public class MaestroDTO {
     }
 
     //Constructor Completo de Maestro (tiene Especialidad y Lista de Materias)--------------
-    public MaestroDTO(String documentoIdentidad, String nombre, String correo, String direccion, String celular, String especialidad, List<String> materias, Boolean estado) {
+    public MaestroDTO(String id, String documentoIdentidad, String nombre, String correo, String direccion, String celular, String especialidad, List<String> materias, Boolean estado) {
+        this.id=id;
         this.documentoIdentidad = documentoIdentidad;
         this.nombre = nombre;
         this.correo = correo;

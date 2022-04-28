@@ -16,6 +16,7 @@ public class MaestroMapper {
 
         //Creamos el MaestroDTO a partir del maestroOriginal
         MaestroDTO maestroDTO = new MaestroDTO(
+                maestro.getId(),
                 maestro.getDocumentoIdentidad(),
                 maestro.getNombre(),
                 maestro.getCorreo(),
@@ -81,6 +82,7 @@ public class MaestroMapper {
         //Crear MaestroDTO con MONO
         return maestro.map(maestro1 -> {
             MaestroDTO maestroDTO = new MaestroDTO(
+                    maestro1.getId(),
                     maestro1.getDocumentoIdentidad(),
                     maestro1.getNombre(),
                     maestro1.getCorreo(),

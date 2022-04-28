@@ -1,5 +1,6 @@
 package co.com.sofka.pruebaRetoFinal.models;
 
+import co.com.sofka.pruebaRetoFinal.models.values.Materia;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,38 +19,39 @@ public class Clase {
     private String id = UUID.randomUUID().toString().substring(0, 10);
 
     //Atributos de Clase-----------------
-    private String nombreMateria;
-    private String nombreProfesor;
-    private List<Horario> horario;
+    private Materia materia;
+    private List<Horario> horarios;
+    private Maestro maestro;
 
     //Constructor de Asignacion---------------
-    public Clase(String nombreMateria, String nombreProfesor, List<Horario> horario) {
-        this.nombreMateria = nombreMateria;
-        this.nombreProfesor = nombreProfesor;
-        this.horario = horario;
+
+
+    public Clase(Materia materia, List<Horario> horarios, Maestro maestro) {
+        this.materia = materia;
+        this.horarios = horarios;
+        this.maestro = maestro;
     }
 
-    //Otros Metodos----------------
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Clase clase = (Clase) o;
-        return Objects.equals(id, clase.id) && Objects.equals(nombreMateria, clase.nombreMateria) && Objects.equals(nombreProfesor, clase.nombreProfesor) && Objects.equals(horario, clase.horario);
+        return Objects.equals(id, clase.id) && Objects.equals(materia, clase.materia) && Objects.equals(horarios, clase.horarios) && Objects.equals(maestro, clase.maestro);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombreMateria, nombreProfesor, horario);
+        return Objects.hash(id, materia, horarios, maestro);
     }
 
     @Override
     public String toString() {
         return "Clase{" +
                 "id='" + id + '\'' +
-                ", nombreMateria='" + nombreMateria + '\'' +
-                ", nombreProfesor='" + nombreProfesor + '\'' +
-                ", horario=" + horario +
+                ", materia=" + materia +
+                ", horarios=" + horarios +
+                ", maestro=" + maestro +
                 '}';
     }
 }
