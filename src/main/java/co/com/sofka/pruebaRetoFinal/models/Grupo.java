@@ -18,6 +18,7 @@ public class Grupo {
     private String id = UUID.randomUUID().toString().substring(0, 5);
 
     //Atributos Grupo-----------
+    //private Maestro director;
     private String maestro; //-> Esto seria maestroID
     private String horarios;
     private Integer grado;

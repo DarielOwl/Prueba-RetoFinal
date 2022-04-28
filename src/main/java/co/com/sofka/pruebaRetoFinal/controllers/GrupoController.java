@@ -1,8 +1,6 @@
 package co.com.sofka.pruebaRetoFinal.controllers;
 
-import co.com.sofka.pruebaRetoFinal.models.Estudiante;
-import co.com.sofka.pruebaRetoFinal.models.Grupo;
-import co.com.sofka.pruebaRetoFinal.models.Maestro;
+import co.com.sofka.pruebaRetoFinal.models.*;
 import co.com.sofka.pruebaRetoFinal.services.Impl.EstudianteServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.GrupoServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.MaestroServiceImpl;
@@ -66,6 +64,7 @@ public class GrupoController {
                 .flatMap(grupo1 -> Mono.just((grupo1)).switchIfEmpty(Mono.empty()));
 
     }
+    //-----------------CRUD-----------------//
 
     //Obtener grupos con estado TRUE y con todos sus datos incluida la lista de estudiantes.
     @GetMapping("/allGruposActivos")
@@ -136,6 +135,44 @@ public class GrupoController {
     }
 
     //Agregar un estudiante
-    //-----------------CRUD-----------------//
+
+
+   /* //Verificamos que la lista este vacia
+        if (maestroUpdate.getMaterias() == null) {
+        //Obtener la lista de Materia y añadirle la nueva materia
+        List<String> materiaUpdate = new ArrayList<String>();
+        materiaUpdate.add(materia);
+
+        //Setiar la Id Maestro y la lista de Materias
+        maestroUpdate.setId(id);
+        maestroUpdate.setMaterias(materiaUpdate);
+
+        return save(maestroUpdate);
+    }
+*/
+
+    //Añadir horario a un Grupo de Clase-------------
+    @PutMapping("/addHorarioClase/{id}")
+    private Mono<Clase> addHorarioDeClase(@PathVariable("id") String id,@RequestBody Clase clase){
+
+        //Primero buscamos el grupo a añadir la Clase
+        Grupo grupo = this.grupoService.findById(id).block();
+
+        //Si no tiene clase, añadirle una nueva
+        if (grupo.getClases() == null){
+            List<Clase> claseNueva = new ArrayList<Clase>();
+            claseNueva.add(clase);
+            grupo.setClases(claseNueva);
+            return this.grupoService.update(id,grupo).thenReturn(clase);
+        }
+
+        //Obtener el grupo y asignarle la nueva clase
+        List<Clase> claseNueva = grupo.getClases();
+        claseNueva.add(clase); //Añade la clase que mandan del Front
+        grupo.setClases(claseNueva);
+
+        //Si ya tiene grupo de clase, añade uno nuevo
+        return this.grupoService.update(id,grupo).thenReturn(clase);
+    }
 
 }
