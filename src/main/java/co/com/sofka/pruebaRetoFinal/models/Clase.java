@@ -18,14 +18,12 @@ public class Clase {
     private String id = UUID.randomUUID().toString().substring(0, 10);
 
     //Atributos de Clase-----------------
-    private String idProfesor;
     private String nombreMateria;
     private String nombreProfesor;
     private List<Horario> horario;
 
     //Constructor de Asignacion---------------
-    public Clase(String idProfesor, String nombreMateria, String nombreProfesor, List<Horario> horario) {
-        this.idProfesor = idProfesor;
+    public Clase(String nombreMateria, String nombreProfesor, List<Horario> horario) {
         this.nombreMateria = nombreMateria;
         this.nombreProfesor = nombreProfesor;
         this.horario = horario;
@@ -37,23 +35,21 @@ public class Clase {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Clase clase = (Clase) o;
-        return Objects.equals(id, clase.id) && Objects.equals(idProfesor, clase.idProfesor) && Objects.equals(nombreMateria, clase.nombreMateria) && Objects.equals(nombreProfesor, clase.nombreProfesor) && Objects.equals(horario, clase.horario);
+        return Objects.equals(id, clase.id) && Objects.equals(nombreMateria, clase.nombreMateria) && Objects.equals(nombreProfesor, clase.nombreProfesor) && Objects.equals(horario, clase.horario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idProfesor, nombreMateria, nombreProfesor, horario);
+        return Objects.hash(id, nombreMateria, nombreProfesor, horario);
     }
 
     @Override
     public String toString() {
         return "Clase{" +
                 "id='" + id + '\'' +
-                ", idProfesor='" + idProfesor + '\'' +
                 ", nombreMateria='" + nombreMateria + '\'' +
                 ", nombreProfesor='" + nombreProfesor + '\'' +
                 ", horario=" + horario +
                 '}';
     }
-
 }
