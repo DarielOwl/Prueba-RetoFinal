@@ -57,5 +57,8 @@ public class EstudianteServiceImpl implements EstudianteService {
     public Mono<Estudiante> findByDocumentoIdentidad(String documentoIdentidad){
         return this.estudianteRepository.findByDocumentoIdentidad(documentoIdentidad);
     }
+
+    @Override
+    public Mono<Void> deleteAll() {return this.estudianteRepository.deleteAll();}
     //-----------------CRUD-----------------//
 }

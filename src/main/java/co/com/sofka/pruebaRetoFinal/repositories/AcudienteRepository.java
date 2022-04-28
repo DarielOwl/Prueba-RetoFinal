@@ -6,4 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface AcudienteRepository extends ReactiveMongoRepository<Acudiente,String> {
     Mono<Acudiente> findByDocumentoIdentidad(String documentoIdentidad);
+    Mono<Void> deleteAll();
 }

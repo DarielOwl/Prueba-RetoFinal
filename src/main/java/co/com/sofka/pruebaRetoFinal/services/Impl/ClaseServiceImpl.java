@@ -24,6 +24,9 @@ public class ClaseServiceImpl implements ClaseService {
     public Flux<Clase> findAll() {
         return claseRepository.findAll();
     }
+
+    @Override
+    public Mono<Void> deleteAll() {return this.claseRepository.deleteAll();}
     //-----------------CRUD-----------------//
 
 

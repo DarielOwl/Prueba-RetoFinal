@@ -10,6 +10,8 @@ public interface ClaseService {
     Mono<Clase> save(Clase clase);
 
     Flux<Clase> findAll();
+
+    Mono<Void> deleteAll();
     //-----------------CRUD-----------------//
 
 }

@@ -122,4 +122,7 @@ public class MaestroServiceImpl implements MaestroService {
         return maestroRepository.findById(id);
     }
 
+    @Override
+    public Mono<Void> deleteAll() {return this.maestroRepository.deleteAll();}
+
 }

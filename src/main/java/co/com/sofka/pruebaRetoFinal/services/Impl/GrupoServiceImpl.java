@@ -53,6 +53,9 @@ public class GrupoServiceImpl implements GrupoService {
     public Mono<Grupo> findById(String id){
         return this.grupoRepository.findById(id);
     }
+
+    @Override
+    public Mono<Void> deleteAll() {return this.grupoRepository.deleteAll();}
     //-----------------CRUD-----------------//
 
 }

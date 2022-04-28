@@ -34,4 +34,6 @@ public interface MaestroService {
 
     //Buscar por ID
     Mono<Maestro> findById(String id);
+
+    Mono<Void> deleteAll();
 }

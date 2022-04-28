@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 
 public interface ClaseRepository extends ReactiveMongoRepository<Clase,String> {
-
+    Mono<Void> deleteAll();
 }

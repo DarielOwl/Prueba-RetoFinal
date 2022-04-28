@@ -20,6 +20,7 @@ public interface EstudianteService {
 
     Mono<Estudiante> findByDocumentoIdentidad(String documentoIdentidad);
 
+    Mono<Void> deleteAll();
 
     //-----------------CRUD-----------------//
 

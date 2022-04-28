@@ -14,5 +14,7 @@ public interface NotaService {
     Mono<Nota> update(String id, Nota nota);
 
     Mono<Nota> delete(String id);
+
+    Mono<Void> deleteAll();
     //-----------------CRUD-----------------//
 }

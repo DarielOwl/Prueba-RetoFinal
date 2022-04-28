@@ -16,6 +16,8 @@ public interface AcudienteService {
     Mono<Acudiente> delete(String id);
 
     Mono<Acudiente> findByDocumentoIdentidad(String documentoIdentidad);
+
+    Mono<Void> deleteAll();
     //-----------------CRUD-----------------//
 
 }

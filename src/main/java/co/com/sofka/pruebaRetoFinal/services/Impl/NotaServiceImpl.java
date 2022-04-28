@@ -43,6 +43,9 @@ public class NotaServiceImpl implements NotaService {
                         .deleteById(notaDelete.getId())
                         .thenReturn(notaDelete));
     }
+
+    @Override
+    public Mono<Void> deleteAll() {return this.notaRepository.deleteAll();}
     //-----------------CRUD-----------------//
 
 }
