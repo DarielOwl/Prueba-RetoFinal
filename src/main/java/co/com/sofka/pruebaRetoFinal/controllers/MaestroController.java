@@ -148,7 +148,7 @@ public class MaestroController {
     @GetMapping("/allMaestrosActivos")
     public Flux<Maestro> allMaestrosActivos(){
         try{
-            return this.findAll().filter(m->m.getEstado()==true).filter(m->m.getIdGrupoDirector()==null);
+            return this.findAll().filter(m->m.getEstado()==true).filter(m->m.getIdGrupoDirector()==null || m.getIdGrupoDirector().equalsIgnoreCase(""));
         }catch (Exception e){
             return Flux.empty();
         }
