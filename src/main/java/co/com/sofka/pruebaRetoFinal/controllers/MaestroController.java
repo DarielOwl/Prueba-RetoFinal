@@ -129,7 +129,7 @@ public class MaestroController {
     }
 
     //Obtener todas las Materias que tenga un Maestro
-    @GetMapping("/allMateriasFromMaestro{idMaestro}")
+    @GetMapping("/allMateriasFromMaestro/{idMaestro}")
     public Flux<Materia> allMateriasFromMaestro(@PathVariable("idMaestro") String idMaestro){
        try{
            List<String> materias= this.maestroService.findById(idMaestro).block().getMaterias();
