@@ -2,7 +2,9 @@ package co.com.sofka.pruebaRetoFinal.controllers;
 
 import co.com.sofka.pruebaRetoFinal.DTOs.EstudianteDTO;
 import co.com.sofka.pruebaRetoFinal.mappers.EstudianteMapper;
+import co.com.sofka.pruebaRetoFinal.models.Acudiente;
 import co.com.sofka.pruebaRetoFinal.models.Estudiante;
+import co.com.sofka.pruebaRetoFinal.services.Impl.AcudienteServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.EstudianteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,12 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
 public class EstudianteController {
 
     @Autowired
     EstudianteServiceImpl estudianteService;
+    AcudienteServiceImpl acudienteService;
     EstudianteMapper estudianteMapper = new EstudianteMapper();
 
     //-----------------CRUD-----------------//
@@ -23,7 +29,22 @@ public class EstudianteController {
     @PostMapping("/addEstudiante")
     @ResponseStatus(HttpStatus.CREATED)
     private Mono<EstudianteDTO> save(@RequestBody EstudianteDTO estudianteDTO) {
-        return this.estudianteService.save(estudianteMapper.createEstudiante(estudianteDTO)).thenReturn(estudianteDTO);
+        try{
+            Acudiente acudiente = acudienteService.findByDocumentoIdentidad(estudianteDTO.getDocumentoIdentidadAcudiente()).block();
+            acudiente.getEstudiantes().add(estudianteMapper.createEstudiante(estudianteDTO));
+            return this.acudienteService.save(acudiente)
+                    .then(this.estudianteService.save(estudianteMapper.createEstudiante(estudianteDTO)))
+                    .thenReturn(estudianteDTO);
+        }catch (Exception e){
+            Acudiente acudiente = acudienteService.findByDocumentoIdentidad(estudianteDTO.getDocumentoIdentidadAcudiente()).block();
+            List<Estudiante> estudianteList = new ArrayList<Estudiante>();
+            estudianteList.add(estudianteMapper.createEstudiante(estudianteDTO));
+            acudiente.setEstudiantes(estudianteList);
+            return this.acudienteService.save(acudiente)
+                    .then(this.estudianteService.save(estudianteMapper.createEstudiante(estudianteDTO)))
+                    .thenReturn(estudianteDTO);
+        }
+
     }
 
     //Mostrar Todos los Estudiantes
@@ -66,6 +87,20 @@ public class EstudianteController {
             return Flux.empty();
         }
     }
+
+    @GetMapping("/allEstudiantesFromAcudiente/{documentoIdentidadAcudiente}")
+    private Flux<Estudiante> allEstudiantesFromAcudiente(@PathVariable("documentoIdentidadAcudiente") String documentoIdentidadAcudiente){
+        try{
+            return Flux.fromIterable(this.acudienteService.
+                    findByDocumentoIdentidad(documentoIdentidadAcudiente)
+                    .block()
+                    .getEstudiantes());
+        }catch (Exception e){
+            return Flux.empty();
+        }
+    }
+
+
 
     //-----------------CRUD-----------------//
 
