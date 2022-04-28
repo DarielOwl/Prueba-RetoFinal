@@ -74,27 +74,32 @@ public class MaestroController {
 
     //Actualizar Lista de Materias de Maestro
     @PutMapping("/updateMateriaMaestro/{id}/{materia}")
-    private Mono<Maestro> updateMateriaDelMaestro(@PathVariable("id") String id, @PathVariable String materia) {
-        return this.maestroService.updateMateriaDelMaestro(id, materia);
+    private Mono<Materia> updateMateriaDelMaestro(@PathVariable("id") String id, @PathVariable String materia) {
+        //Retorna la Materia que se Añadio
+        return (this.maestroService.updateMateriaDelMaestro(id, materia)).thenReturn((new Materia(materia)));
     }
 
     //Eliminar Materia de la Lista de Materias de Maestro
     @PutMapping("/removeMateriaMaestro/{id}/{materia}")
-    private Mono<Maestro> deleteMateriaDelMaestro(@PathVariable("id") String id, @PathVariable String materia) {
+    private Mono<Materia> deleteMateriaDelMaestro(@PathVariable("id") String id, @PathVariable String materia) {
 
         Maestro maestro = this.maestroRepository.findById(id).block(); //Obtener el maestro
 
-        if (maestro.getMaterias() == null) //Si no hay materias a remover, sale
-            return Mono.just(maestro);
-
-        //Si tiene materias, eliminar la materia en especifico
-        Boolean materiaBorrada = maestro.getMaterias().removeIf(m -> m.contains(materia));
-        if (materiaBorrada) { //Si se borro la materia
-            return this.maestroService.update(id, maestro)
-                    .flatMap(maestro1 -> Mono.just(maestro1)).switchIfEmpty(Mono.empty());
+        if (maestro.getMaterias() == null){ //Si no hay materias a remover, sale
+            //return Mono.just(maestro);
+            return Mono.just(new Materia(materia)); //Retorna la Materia que se Elimino
         }
 
-        return Mono.just(maestro);
+        //Si tiene materias, eliminar la materia en especifico
+        Boolean materiaBorrada = maestro.getMaterias().removeIf(m -> m.contains(materia)); //Elimina de la lista de materias de Maestro
+        if (materiaBorrada) { //Si se borro la materia
+            return (this.maestroService.update(id, maestro).flatMap(maestro1 -> Mono.just(maestro1)).switchIfEmpty(Mono.empty()))
+                    .thenReturn((new Materia(materia)));
+            //return Mono.just(new Materia(materia)); //Retorna la Materia que se Elimino
+        }
+
+        //return Mono.just(maestro);
+        return Mono.just(new Materia(materia)); //Retorna la Materia que se Elimino
     }
 
 
