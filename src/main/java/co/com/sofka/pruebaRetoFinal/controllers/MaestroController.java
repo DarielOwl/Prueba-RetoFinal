@@ -143,11 +143,12 @@ public class MaestroController {
        }
     }
 
-    //URL para hacer un GET de maestros activos.
+    //URL para hacer un GET de maestros activos me devuelva los maestros activos,
+    // pero que no estén en ningun grupo como director, osea qu tengan el string vacio
     @GetMapping("/allMaestrosActivos")
     public Flux<Maestro> allMaestrosActivos(){
         try{
-            return this.findAll().filter(m->m.getEstado()==true);
+            return this.findAll().filter(m->m.getEstado()==true).filter(m->m.getIdGrupoDirector()==null);
         }catch (Exception e){
             return Flux.empty();
         }
