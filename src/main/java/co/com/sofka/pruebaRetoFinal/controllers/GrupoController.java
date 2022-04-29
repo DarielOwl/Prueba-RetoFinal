@@ -29,7 +29,7 @@ public class GrupoController {
     MaestroServiceImpl maestroService = new MaestroServiceImpl();
 
     @Autowired
-    ClaseServiceImpl claseService;
+    ClaseServiceImpl claseService = new ClaseServiceImpl();
 
     //-----------------CRUD-----------------//
     //Guardar un Grupo
@@ -290,6 +290,32 @@ public class GrupoController {
             return this.grupoService.findAll()
                     .filter(g-> g.getDirector()!=null)
                     .filter(g-> g.getDirector().getCorreo().equals(correoMaestro));
+        }catch (Exception e){
+            return Flux.empty();
+        }
+    }
+
+    //Obtener grupos en lo que el maestro da clases
+    @GetMapping("/allGruposFromMaestroEjerceClase/{correoMaestro}")
+    public Flux<Grupo> allGruposFromMaestroEjerceClase(@PathVariable("correoMaestro") String correoMaestro){
+        try{
+            List<Grupo> grupoList = new ArrayList<Grupo>();
+            this.grupoService.findAll()
+                    .filter(g -> g.getClases()!=null)
+                    .map( grupo -> {
+                        if(grupo.getClases()!=null){
+                            grupo.getClases().stream().map(clase -> {
+                                if(clase.getMaestro()!=null){
+                                    if(clase.getMaestro().getCorreo().equalsIgnoreCase(correoMaestro)){
+                                        grupoList.add(grupo);
+                                    }
+                                }
+                                return grupo;
+                            });
+                        }
+                        return grupo;
+                    });
+            return Flux.fromIterable(grupoList);
         }catch (Exception e){
             return Flux.empty();
         }
