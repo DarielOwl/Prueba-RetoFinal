@@ -125,4 +125,9 @@ public class MaestroServiceImpl implements MaestroService {
     @Override
     public Mono<Void> deleteAll() {return this.maestroRepository.deleteAll();}
 
+    @Override
+    public Mono<Maestro> findByCorreo(String correo){
+        return this.maestroRepository.findByCorreo(correo);
+    }
+
 }

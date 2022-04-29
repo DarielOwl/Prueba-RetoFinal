@@ -10,4 +10,5 @@ public interface MaestroRepository extends ReactiveMongoRepository<Maestro,Strin
     Mono<Maestro> findByDocumentoIdentidad(String documentoIdentidad);
     Flux<Maestro> findByMaterias(String materia);
     Mono<Void> deleteAll();
+    Mono<Maestro> findByCorreo(String correo);
 }

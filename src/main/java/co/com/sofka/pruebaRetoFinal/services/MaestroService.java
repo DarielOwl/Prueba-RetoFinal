@@ -36,4 +36,6 @@ public interface MaestroService {
     Mono<Maestro> findById(String id);
 
     Mono<Void> deleteAll();
+
+    Mono<Maestro> findByCorreo(String correo);
 }

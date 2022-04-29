@@ -2,10 +2,14 @@ package co.com.sofka.pruebaRetoFinal.controllers;
 
 import co.com.sofka.pruebaRetoFinal.DTOs.MaestroDTO;
 import co.com.sofka.pruebaRetoFinal.mappers.MaestroMapper;
+import co.com.sofka.pruebaRetoFinal.models.Clase;
+import co.com.sofka.pruebaRetoFinal.models.Grupo;
 import co.com.sofka.pruebaRetoFinal.models.Maestro;
 import co.com.sofka.pruebaRetoFinal.repositories.MaestroRepository;
 import co.com.sofka.pruebaRetoFinal.models.values.Materia;
 import co.com.sofka.pruebaRetoFinal.models.values.Materias;
+import co.com.sofka.pruebaRetoFinal.services.Impl.ClaseServiceImpl;
+import co.com.sofka.pruebaRetoFinal.services.Impl.GrupoServiceImpl;
 import co.com.sofka.pruebaRetoFinal.services.Impl.MaestroServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +32,9 @@ public class MaestroController {
 
     @Autowired
     MaestroRepository maestroRepository; //Instancia del repositorio Maestro
+
+    @Autowired
+    ClaseServiceImpl claseService = new ClaseServiceImpl();
 
     //-----------------CRUD-----------------//
     //Guardar un Maestro
@@ -151,6 +158,24 @@ public class MaestroController {
             return this.findAll().filter(m->m.getEstado()==true).filter(m->m.getIdGrupoDirector()==null || m.getIdGrupoDirector().equalsIgnoreCase(""));
         }catch (Exception e){
             return Flux.empty();
+        }
+    }
+
+    @GetMapping("/findMaestroByCorreo/{correo}")
+    public Mono<Maestro> findMaestroByCorreo(@PathVariable("correo") String correo){
+        try{
+            return this.maestroService.findByCorreo(correo);
+        }catch (Exception e){
+            return Mono.empty();
+        }
+    }
+
+    @GetMapping("/allClasesFromMaestro/{correo}")
+    public Flux<Clase> allClasesFromMaestro(@PathVariable("correo") String correo){
+        try{
+            return this.claseService.findAll().filter(c->c.getMaestro().getCorreo().equals(correo));
+        }catch (Exception e){
+            return Flux.error(new Throwable(e.toString()));
         }
     }
 

@@ -228,6 +228,15 @@ public class GrupoController {
         }
     }
 
+    @GetMapping("/findGrupoFromMaestroDirector/{correo}")
+    public Mono<Grupo> findGrupoFromMaestroDirector(@PathVariable("correo") String correo){
+        try{
+            return this.grupoService.findById(this.maestroService.findByCorreo(correo).block().getIdGrupoDirector())
+                    .filter(g->g.isEstado()==true);
+        }catch (Exception e){
+            return Mono.empty();
+        }
+    }
 
 
 
