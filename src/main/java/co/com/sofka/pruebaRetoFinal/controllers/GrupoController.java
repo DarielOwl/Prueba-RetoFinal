@@ -83,9 +83,29 @@ public class GrupoController {
     //Borrar grupo de forma lógica mediante su ID
     @PutMapping("/deleteGrupo/{id}")
     private Mono<Grupo> logicDeleteGrupoById(@PathVariable("id") String id) {
-        Grupo grupo = this.grupoService.findById(id).block();
-        grupo.setEstado(false);
-        return this.grupoService.save(grupo);
+        try{
+            Grupo grupo = this.grupoService.findById(id).block();
+            grupo.setEstado(false);
+            //Si grupo no tiene una lista de estudiante, continau
+            if(grupo.getEstudiantes()!=null){
+                List<Estudiante> estudianteList = grupo.getEstudiantes();
+                for(Estudiante e: estudianteList){
+                    e.setGrupo(null);
+                    this.estudianteService.update(e.getId(),e);
+                }
+            }
+            if(grupo.getDirector()!=null){
+                Maestro maestro = this.maestroService.findById(grupo.getDirector().getId()).block();
+                maestro.setIdGrupoDirector(null);
+                this.maestroService.update(maestro.getId(),maestro);
+            }
+
+            return this.grupoService.update(id,grupo);
+        }catch (Exception e){
+            return Mono.empty();
+        }
+
+
     }
 
     //Eliminar estudiante de un grupo mediante ID estudiante e ID grupo.
@@ -172,7 +192,12 @@ public class GrupoController {
     //Listar horarios de un grupo en especifico
     @GetMapping("/allHorariosGrupos/{id}")
     private Flux<Clase> allHorariosDeGrupos(@PathVariable("id") String id) {
-        return Flux.fromIterable(this.grupoService.findById(id).block().getClases()).switchIfEmpty(Mono.empty());
+        try{
+            Flux<Clase> claseFlux = Flux.fromIterable(this.grupoService.findById(id).block().getClases());
+            return claseFlux;
+        }catch (Exception e){
+            return Flux.empty();
+        }
     }
 
 
