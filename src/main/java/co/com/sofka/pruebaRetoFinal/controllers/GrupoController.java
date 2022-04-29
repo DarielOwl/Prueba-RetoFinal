@@ -93,11 +93,13 @@ public class GrupoController {
                     e.setGrupo(null);
                     this.estudianteService.update(e.getId(),e);
                 }
+                grupo.setEstudiantes(null);
             }
             if(grupo.getDirector()!=null){
                 Maestro maestro = this.maestroService.findById(grupo.getDirector().getId()).block();
                 maestro.setIdGrupoDirector(null);
                 this.maestroService.update(maestro.getId(),maestro);
+                grupo.setDirector(null);
             }
 
             return this.grupoService.update(id,grupo);
