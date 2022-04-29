@@ -187,7 +187,8 @@ public class GrupoController {
             Clase clase = new Clase(
                     new Materia(nombreMateria),
                     horarios,
-                    this.maestroService.findById(idMaestro).block());
+                    this.maestroService.findById(idMaestro).block(),
+                    grupoMono);
             if (grupoMono.getClases() == null) {
                 List<Clase> claseList = new ArrayList<Clase>();
                 claseList.add(clase);
@@ -277,9 +278,24 @@ public class GrupoController {
             return this.grupoService.update(grupo.getId(),grupo).thenReturn(notaNueva); //Actualizamos el grupo
 
         } catch (Exception e) {
-            return Mono.error(new Throwable("No funciono crack")); //Sino devuelve vacio chaval!!!
+            return Mono.empty();
         }
     }
+
+    //Obtener lista de materias
+    @GetMapping("/allGruposFromMaestro/{correoMaestro}")
+    public Flux<Grupo> allGruposFromMaestro(@PathVariable("correoMaestro") String correoMaestro){
+        try{
+
+            return this.grupoService.findAll()
+                    .filter(g-> g.getDirector()!=null)
+                    .filter(g-> g.getDirector().getCorreo().equals(correoMaestro));
+        }catch (Exception e){
+            return Flux.empty();
+        }
+    }
+
+
 
 
 }

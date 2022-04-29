@@ -24,6 +24,7 @@ public class Clase {
     private List<Horario> horarios;
     private Maestro maestro;
     private List<Estudiante> estudiantes = new ArrayList<Estudiante>();
+    private Grupo grupo;
 
     //Constructor de Asignacion---------------
     public Clase(Materia materia, List<Horario> horarios, Maestro maestro) {
@@ -38,6 +39,15 @@ public class Clase {
         this.horarios = horarios;
         this.maestro = maestro;
         this.estudiantes = estudiantes;
+    }
+
+    //Clase con grupo
+    public Clase(Materia materia, List<Horario> horarios, Maestro maestro, Grupo grupo) {
+        this.materia = materia;
+        this.horarios = horarios;
+        this.maestro = maestro;
+        this.estudiantes = new ArrayList<Estudiante>();
+        this.grupo = grupo;
     }
 
     //Otros Metodos------------
