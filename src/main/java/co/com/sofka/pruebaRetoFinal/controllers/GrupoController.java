@@ -89,19 +89,19 @@ public class GrupoController {
             //Si grupo no tiene una lista de estudiante, continau
             if(grupo.getEstudiantes()!=null){
                 List<Estudiante> estudianteList = grupo.getEstudiantes();
-                for(Estudiante e: estudianteList){
-                    e.setGrupo(null);
-                    this.estudianteService.update(e.getId(),e);
-                }
+                estudianteList.forEach( e -> {
+                    Estudiante estudiante = this.estudianteService.findById(e.getId()).block();
+                    estudiante.setGrupo("");
+                    this.estudianteService.update(estudiante.getId(),estudiante);
+                });
                 grupo.setEstudiantes(null);
             }
             if(grupo.getDirector()!=null){
                 Maestro maestro = this.maestroService.findById(grupo.getDirector().getId()).block();
-                maestro.setIdGrupoDirector(null);
+                maestro.setIdGrupoDirector("");
                 this.maestroService.update(maestro.getId(),maestro);
                 grupo.setDirector(null);
             }
-
             return this.grupoService.update(id,grupo);
         }catch (Exception e){
             return Mono.empty();
