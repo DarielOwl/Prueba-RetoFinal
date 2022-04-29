@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -22,16 +23,24 @@ public class Clase {
     private Materia materia;
     private List<Horario> horarios;
     private Maestro maestro;
+    private List<Estudiante> estudiantes = new ArrayList<Estudiante>();
 
     //Constructor de Asignacion---------------
-
-
     public Clase(Materia materia, List<Horario> horarios, Maestro maestro) {
         this.materia = materia;
         this.horarios = horarios;
         this.maestro = maestro;
     }
 
+    //Clase con lista de Estudiantes
+    public Clase(Materia materia, List<Horario> horarios, Maestro maestro, List<Estudiante> estudiantes) {
+        this.materia = materia;
+        this.horarios = horarios;
+        this.maestro = maestro;
+        this.estudiantes = estudiantes;
+    }
+
+    //Otros Metodos------------
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

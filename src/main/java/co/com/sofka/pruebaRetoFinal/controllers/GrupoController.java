@@ -238,6 +238,23 @@ public class GrupoController {
         }
     }
 
+    //Agregar nota al estudiante
+    @PutMapping("/addNotaToEstudiante/{correoMaestro}/{idEstudiante}")
+    public Mono<Nota> addNotaToEstudiante(@PathVariable("correoMaestro") String correoMaestro,@PathVariable("idEstudiante") String idEstudiante, @RequestBody Nota nota){
+
+        //Primero buscamos el maestro
+        Maestro maestro = this.maestroService.findByCorreo(correoMaestro).block();
+
+
+
+        Estudiante estudiante = this.estudianteService.findById(idEstudiante).block();
+
+
+
+
+        return null;
+    }
+
 
 
 }

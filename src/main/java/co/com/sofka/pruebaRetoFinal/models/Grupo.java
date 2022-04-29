@@ -19,7 +19,7 @@ public class Grupo {
 
     //Atributos Grupo-----------
     //private Maestro director;
-    private String maestro; //-> Esto seria maestroID
+    private String maestro; //-> Aca se guarda la ID del Maestro Director
     private String horarios;
     private Integer grado;
     private Integer maximoCupos;

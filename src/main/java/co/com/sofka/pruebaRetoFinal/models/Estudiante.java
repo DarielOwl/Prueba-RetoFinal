@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -24,6 +25,8 @@ public class Estudiante {
     private Integer edad;
     private Boolean estado;
     private String documentoIdentidadAcudiente;
+
+    private List<Nota> notas; //Lista de notas
 
     //Constructor de Asignacion--------------
     public Estudiante(String id, String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado) {
@@ -57,7 +60,18 @@ public class Estudiante {
         this.documentoIdentidadAcudiente = documentoIdentidadAcudiente;
     }
 
-
+    //Constructor de Estudiante con  LISTA de Notas
+    public Estudiante(String id, String grupo, String documentoIdentidad, String nombre, Integer grado, Integer edad, Boolean estado, String documentoIdentidadAcudiente, List<Nota> notas) {
+        this.id = id;
+        this.grupo = grupo;
+        this.documentoIdentidad = documentoIdentidad;
+        this.nombre = nombre;
+        this.grado = grado;
+        this.edad = edad;
+        this.estado = estado;
+        this.documentoIdentidadAcudiente = documentoIdentidadAcudiente;
+        this.notas = notas;
+    }
 
     //Otros Metodos-------------------------
     @Override

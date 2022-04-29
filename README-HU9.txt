@@ -1,9 +1,20 @@
-En esta branch se implementara las funcionalidades de la HU6
+En esta branch se implementara las funcionalidades de la HU9
 
--Asignar a cada Clase sus Horarios y Materias de cada profesor
+**Objetivo:** Asignar a cada estudiante registrado en una clase una nota en una respectiva materia.
 
--CU: Cuando selecciono la materia "Matemáticas", los docentes que ofertan estas materias se pueden desplegar en una lista enum, para seleccionar el docente que dará la materia a la clase.
+**Criterios de aceptación: **
 
--CU: Se puede escoger una materia Lunes de 3 a 5 y martes de 2 a 1
+- Dado que soy un Maestro.
+- Cuando quiero agregar una nota de mi materia a una clase.
+- Entonces selecciono un grupo de la lista de grupos registrados en cada materia.
+- Entonces puedo agregar una nueva nota a la clase en mi materia haciendo click en "Agregar nota".
+- Entonces ingreso el Nombre de la nota (Descripción Eje: Examen 1, Taller Emprendimiento, etc), La fecha y el Valor de la nota para cada uno de los estudiantes.
+- Finalmente cuando ingrese las notas de todos los estudiantes inscritos en la clase, estas notas aparecen en la información de la cada grupo.
 
-En esta branch se modificara la nueva HU6
+**Detalles:**
+- Cada estudiante se le asigna una Lista de notas ( Nombre de la Nota, Nombre Materia, Fecha, Puntaje).
+- Cada maestro podrá visualizar sólo las notas de sus propias materias.
+- El maestro puede visualizar las notas de todas las materias cuando es el director de grupo.
+- Las notas se manejan del 1 al 5 en decimal.
+
+- Nombre de la nota: String
