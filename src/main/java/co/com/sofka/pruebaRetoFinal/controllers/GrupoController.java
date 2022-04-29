@@ -172,7 +172,7 @@ public class GrupoController {
     //Listar horarios de un grupo en especifico
     @GetMapping("/allHorariosGrupos/{id}")
     private Flux<Clase> allHorariosDeGrupos(@PathVariable("id") String id) {
-        return Flux.fromIterable(this.grupoService.findById(id).block().getClases());
+        return Flux.fromIterable(this.grupoService.findById(id).block().getClases()).switchIfEmpty(Mono.empty());
     }
 
 
