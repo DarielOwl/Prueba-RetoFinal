@@ -66,7 +66,10 @@ public class Maestro {
         this.idGrupoDirector=idGrupoDirector;
     }
 
-
+    //Para Test
+    public Maestro(String documentoIdentidad) {
+        this.documentoIdentidad = documentoIdentidad;
+    }
 
     //Otros Metodos-------------------------
     @Override
