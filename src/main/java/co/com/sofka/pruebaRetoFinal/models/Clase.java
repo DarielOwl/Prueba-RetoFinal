@@ -23,8 +23,8 @@ public class Clase {
     private Materia materia;
     private List<Horario> horarios;
     private Maestro maestro;
-    private List<Estudiante> estudiantes = new ArrayList<Estudiante>();
-    private Grupo grupo;
+    //private List<Estudiante> estudiantes = new ArrayList<Estudiante>();
+    //private Grupo grupo;
 
     //Constructor de Asignacion---------------
     public Clase(Materia materia, List<Horario> horarios, Maestro maestro) {
@@ -34,7 +34,7 @@ public class Clase {
     }
 
     //Clase con lista de Estudiantes
-    public Clase(Materia materia, List<Horario> horarios, Maestro maestro, List<Estudiante> estudiantes) {
+   /* public Clase(Materia materia, List<Horario> horarios, Maestro maestro, List<Estudiante> estudiantes) {
         this.materia = materia;
         this.horarios = horarios;
         this.maestro = maestro;
@@ -49,7 +49,7 @@ public class Clase {
         this.estudiantes = new ArrayList<Estudiante>();
         this.grupo = grupo;
     }
-
+*/
     //Otros Metodos------------
     @Override
     public boolean equals(Object o) {

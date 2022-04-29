@@ -175,9 +175,15 @@ public class GrupoController {
         return Flux.fromIterable(this.grupoService.findById(id).block().getClases());
     }
 
+
+    //Obtener lista de estudiantes de un grupo mediante el ID del grupo.
+    @GetMapping("/findGrupo/{idGrupo}")
+    private Mono<Grupo> findGrupo(@PathVariable("idGrupo") String id) {
+        return this.grupoService.findById(id);
+    }
     //Añadir horario a un Grupo de Clase-------------
     @PutMapping("/addHorarioClase/{idGrupo}/{idMaestro}/{nombreMateria}")
-    private Mono<Clase> addHorarioDeClase(
+    private Mono<Grupo> addHorarioDeClase(
             @PathVariable("idGrupo") String idGrupo,
             @PathVariable("idMaestro") String idMaestro,
             @PathVariable("nombreMateria") String nombreMateria,
@@ -187,16 +193,17 @@ public class GrupoController {
             Clase clase = new Clase(
                     new Materia(nombreMateria),
                     horarios,
-                    this.maestroService.findById(idMaestro).block(),
-                    grupoMono);
+                    this.maestroService.findById(idMaestro).block());
+
             if (grupoMono.getClases() == null) {
                 List<Clase> claseList = new ArrayList<Clase>();
                 claseList.add(clase);
                 grupoMono.setClases(claseList);
-                return this.grupoService.update(idGrupo, grupoMono).then(this.claseService.save(clase));
+                return this.grupoService.update(idGrupo, grupoMono);
+                //return this.grupoService.save(grupoMono).thenReturn(clase);
             }
             grupoMono.getClases().add(clase);
-            return this.grupoService.update(idGrupo, grupoMono).then(this.claseService.save(clase));
+            return this.grupoService.update(idGrupo, grupoMono);
         } catch (Exception e) {
             return Mono.empty();
         }
