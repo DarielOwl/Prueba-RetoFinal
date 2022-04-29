@@ -25,7 +25,7 @@ public class QAUtilitiesController {
     @Autowired
     ClaseServiceImpl claseService = new ClaseServiceImpl();
 
-    @GetMapping("/clearDB")
+    /*@GetMapping("/clearDB")
     public Mono<Void> limpiarBaseDeDatos(){
         try{
             return this.grupoService.deleteAll()
@@ -37,5 +37,6 @@ public class QAUtilitiesController {
         }catch (Exception e){
             return Mono.empty();
         }
-    }
+    }*/
+
 }
